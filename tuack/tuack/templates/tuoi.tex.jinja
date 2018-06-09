@@ -1,0 +1,339 @@
+{% extends 'template_base.tex.jinja' %}
+
+{% block cover %}
+
+\thispagestyle{Cover}
+
+\ifdefined \precautions
+
+	\begin{center}
+		\ifdefined\longtitle\centerline\fi{\erhao \bf \thetitle} \par
+		\ifdefined\engtitle
+			{\xiaoyi \hei \engtitle \par}
+		\fi
+		\ifdefined\subtitle
+			{\erhao \hei \subtitle \par}
+		\fi
+		\ifdefined\theday
+			{\kai \erhao \theday \par}
+		\fi
+		\ifdefined\thetime
+			{\hei \xiaosan \thetime \par}
+		\fi
+	\end{center}
+
+\else
+
+	\null
+	\begin{center}
+		\ifdefined\thetitle
+			\ifdefined\longtitle\centerline\fi{\yihao \bf \thetitle} \par
+		\fi
+		\ifdefined\subtitle
+			{\yihao \hei \subtitle \par} \vskip 1em
+		\fi
+		\ifdefined\engtitle
+			{\yihao \xiaochu \engtitle \par} \vskip 1em
+		\fi
+		\ifdefined\theday
+			{\kai \xiaoyi \theday \par} \vskip 1em 
+		\fi
+		\ifdefined\thetime
+			{\hei \sanhao \thetime \par}
+		\fi
+	\end{center}
+	\vskip 1em
+
+\fi
+	
+\begin{center}
+\begin{tabularx}{\the \textwidth}{
+		|
+		{%- if probs.__len__() == 4 -%}
+			p{0.20 \textwidth}
+		{%- elif probs.__len__() == 3 -%}
+			p{0.22 \textwidth}
+		{%- else -%}
+			p{ {{ 1.0 / (probs.__len__() + 1) }} \textwidth}
+		{%- endif -%}
+		|
+		{%- for i in range(probs.__len__()) %}X|{% endfor-%}
+	}
+	\hline
+		题目名称
+		{%- for prob in probs -%}
+			& {{ prob.tr('title') }}
+		{%- endfor -%}
+		\tabularnewline
+	\hline
+		题目类型
+		{%- for prob in probs -%}
+			&
+			{% if prob['type'] == 'program' %}
+				传统型
+			{% elif prob['type'] == 'output' %}
+				提交答案型
+			{% else %}
+				交互型
+			{% endif %}
+		{%- endfor -%}
+		\tabularnewline
+	\hline
+{% if comp == 'noi' %}
+	{% if base.out_system != 'Windows' %}
+		目录
+		{%- for prob in probs -%}
+			& {\ttfamily {{ prob['name'].replace('_', '\\_') }} }
+		{%- endfor -%} 
+		\tabularnewline
+	\hline
+	{%endif%}
+		可执行文件名
+		{%- for prob in probs -%}
+			&
+			{% if prob['type'] != 'output' %}
+				{\ttfamily {{ prob['name'].replace('_', '\\_') + ('.exe' if base.out_system == 'Windows' else '') }} }
+			{% else %}
+				N/A
+			{% endif %}
+		{%- endfor -%}
+		\tabularnewline
+	\hline
+{% endif %}
+		输入{% if io_style == 'fio' %}文件名{% endif %}
+		{%- for prob in probs -%}
+			&
+			{%- if 'input_table' in prob -%}
+				{{ prob.tr('input_table') }}
+			{%- elif io_style == 'fio' -%}
+				{%- if prob['type'] != 'output' -%}
+					{\ttfamily {{ prob['name'].replace('_', '\\_') }}.in }
+				{%- else -%}
+					{\ttfamily {{ prob['name'].replace('_', '\\_') }}*.in }
+				{%- endif -%}
+			{%- else -%}
+				{%- if prob['type'] != 'output' -%}
+					标准输入
+				{%- else -%}
+					{\ttfamily *.in }
+				{%- endif -%}
+			{%- endif -%}
+		{%- endfor -%}
+		\tabularnewline
+	\hline
+		输出{% if io_style == 'fio' %}文件名{% endif %}
+		{%- for prob in probs -%}
+			&
+			{%- if 'output_table' in prob -%}
+				{{ prob.tr('output_table') }}
+			{%- elif io_style == 'fio' -%}
+				{%- if prob['type'] != 'output' -%}
+					{\ttfamily {{ prob['name'].replace('_', '\\_') }}.out }
+				{%- else -%}
+					{\ttfamily {{ prob['name'].replace('_', '\\_') }}*.out }
+				{%- endif -%}
+			{%- else -%}
+				{%- if prob['type'] != 'output' -%}
+					标准输出
+				{%- else -%}
+					{\ttfamily *.out }
+				{%- endif -%}
+			{%- endif -%}
+		{%- endfor -%}
+		\tabularnewline
+	\hline
+		每个测试点时限
+		{%- for prob in probs -%}
+			&
+			{% if prob['type'] != 'output' %}
+				{{ prob['time limit'] }}秒
+			{% else %}
+				N/A
+			{% endif %}
+		{%- endfor -%}
+		\tabularnewline
+	\hline
+		内存限制
+		{%- for prob in probs -%}
+			&
+			{% if prob['type'] != 'output' %}
+				{{ prob['memory limit'] }}
+			{% else %}
+				N/A
+			{% endif %}
+		{%- endfor -%}
+		\tabularnewline
+	\hline
+		测试点/包数目
+		{%- for prob in probs -%}
+			& {{ prob.test_cases.__len__() if not prob.packed else prob.data.__len__() }}
+		{%- endfor -%}
+		\tabularnewline
+	\hline
+		测试点是否等分
+		{%- for prob in probs -%}
+			& {{ _("yes") if not prob.packed else _("no") }}
+		{%- endfor -%}
+		\tabularnewline
+	\hline
+	{% if probs.__len__() >= 1 and probs[0].pre_cases.__len__() >= 1 %}
+		预测试点/包数目
+		{%- for prob in probs -%}
+			& {{ prob.pre_cases.__len__() }}
+		{%- endfor -%}
+		\tabularnewline
+	\hline
+	{% endif %}
+\end{tabularx}
+\end{center}
+
+{% if comp == 'noi' %}
+	提交源程序文件名
+	\begin{center}
+	\begin{tabularx}{\the \textwidth}{
+			|
+			{%- if probs.__len__() == 4 -%}
+				p{0.20 \textwidth}
+			{%- elif probs.__len__() == 3 -%}
+				p{0.22 \textwidth}
+			{%- else -%}
+				p{ {{ 1.0 / (probs.__len__() + 1) }} \textwidth}
+			{%- endif -%}
+			|
+			{%- for i in range(probs.__len__()) %}X|{% endfor-%}
+		}
+		\hline
+			对于C++ {% if probs.__len__() < 5 %} \tabto{5.5em} {% endif %} 语言
+			{%- for prob in probs -%}
+				&
+				{% if prob['type'] != 'output' %}
+					{\ttfamily {{ prob['name'].replace('_', '\\_') }}.cpp }
+				{% else %}
+					N/A
+				{% endif %}
+			{%- endfor -%}
+			\tabularnewline
+		\hline
+			对于C {% if probs.__len__() < 5 %} \tabto{5.5em} {% endif %} 语言
+			{%- for prob in probs -%}
+				&
+				{% if prob['type'] != 'output' %}
+					{\ttfamily {{ prob['name'].replace('_', '\\_') }}.c }
+				{% else %}
+					N/A
+				{% endif %}
+			{%- endfor -%}
+			\tabularnewline
+		\hline
+			对于Pascal {% if probs.__len__() < 5 %} \tabto{5.5em} {% endif %} 语言
+			{%- for prob in probs -%}
+				&
+				{% if prob['type'] != 'output' %}
+					{\ttfamily {{ prob['name'].replace('_', '\\_') }}.pas }
+				{% else %}
+					N/A
+				{% endif %}
+			{%- endfor -%}
+			\tabularnewline
+		\hline
+	\end{tabularx}
+	\end{center}
+
+	编译选项
+	\begin{center}
+	\begin{tabularx}{\the \textwidth}{
+			|
+			{%- if probs.__len__() == 4 -%}
+				p{0.20 \textwidth}
+			{%- elif probs.__len__() == 3 -%}
+				p{0.22 \textwidth}
+			{%- else -%}
+				p{ {{ 1.0 / (probs.__len__() + 1) }} \textwidth}
+			{%- endif -%}
+			|
+			{%- for i in range(probs.__len__()) %}X|{% endfor-%}
+		}
+		{% if 'cpp' in compile %}
+		\hline
+			对于C++ {% if probs.__len__() < 5 %} \tabto{5.5em} {% endif %} 语言
+			{%- for prob in compile['cpp'] -%}
+				&
+				{%- if prob['cnt'] > 1 -%}
+				\multicolumn{ {{- prob['cnt'] -}} }{@{}X|}{\parbox{ \hsize }{ \centering
+				{%- endif -%}
+					{%- if prob['use'] -%}
+						\ttfamily {{ prob['option'] }}
+					{%- else -%}
+						prob['option']
+					{%- endif -%}
+				{%- if prob['cnt'] > 1 -%}
+				} }
+				{%- endif -%}
+			{%- endfor -%}
+			\tabularnewline
+		{% endif %}
+		{% if 'c' in compile %}
+		\hline
+			对于C {% if probs.__len__() < 5 %} \tabto{5.5em} {% endif %} 语言
+			{%- for prob in compile['c'] -%}
+				&
+				{%- if prob['cnt'] > 1 -%}
+				\multicolumn{ {{- prob['cnt'] -}} }{@{}X|}{\parbox{ \hsize }{ \centering
+				{%- endif -%}
+					{%- if prob['use'] -%}
+						\ttfamily {{ prob['option'] }}
+					{%- else -%}
+						prob['option']
+					{%- endif -%}
+				{%- if prob['cnt'] > 1 -%}
+				} }
+				{%- endif -%}
+			{%- endfor -%}
+			\tabularnewline
+		{% endif %}
+		{% if 'pas' in compile %}
+		\hline
+			对于Pascal {% if probs.__len__() < 5 %} \tabto{5.5em} {% endif %} 语言
+			{%- for prob in compile['pas'] -%}
+				&
+				{%- if prob['cnt'] > 1 -%}
+				\multicolumn{ {{- prob['cnt'] -}} }{@{}X|}{\parbox{ \hsize }{ \centering
+				{%- endif -%}
+					{%- if prob['use'] -%}
+						\ttfamily {{ prob['option'] }}
+					{%- else -%}
+						prob['option']
+					{%- endif -%}
+				{%- if prob['cnt'] > 1 -%}
+				} }
+				{%- endif -%}
+			{%- endfor -%}
+			\tabularnewline
+		{% endif %}
+		\hline
+	\end{tabularx}
+	\end{center}
+{% endif %}
+
+\ifdefined\precautions
+	\precautions
+\fi
+
+{% endblock %}
+
+{% block statements %}
+
+{% for i in range(problems.__len__()) %}
+
+	\clearpage
+
+	\begin{center}
+		\section{ {{probs[i].tr('title')}}（{{ probs[i]['name'].replace('_', '\\_') }}） }
+	\end{center}
+	
+	{{ problems[i] }}
+
+{% endfor %}
+
+{% endblock %}
+
