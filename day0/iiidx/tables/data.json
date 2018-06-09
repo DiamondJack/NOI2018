@@ -1,0 +1,149 @@
+[
+    [
+        "测试点编号",
+        "$n$",
+		"$k$",
+		"$d$",
+		"特殊限制"
+    ],
+    [
+        "1",
+        "$1\\le n \\le 10$",
+		"$k=2$",
+        "$1\\le d \\le 100$",
+		"保证 $d_i$ 互不相同"
+    ],
+    [
+        "2",
+        null,
+		"$k=3$",
+        null,
+		null
+    ],
+    [
+        "3",
+		null,
+        "$k=1.1$",
+        null,
+        null
+    ],
+    [
+        "4",
+		null,
+        "$k=n$",
+        null,
+        null
+    ],
+    [
+        "5",
+        null,
+		"$1 < k \\le 100$",
+        null,
+        null
+    ],
+    [
+        "6",
+        null,
+		null,
+        null,
+        null
+    ],
+    [
+        "7",
+		"$1\\le n \\le 2000$",
+        "$k=2$",
+        "$1\\le d \\le 10^9$",
+		"保证 $d_i$ 互不相同"
+    ],
+    [
+        "8",
+        null,
+		null,
+        null,
+		"无"
+    ],
+    [
+        "9",
+        null,
+	    "$k=3$",
+        null,
+		"保证 $d_i$ 互不相同"
+    ],
+    [
+        "10",
+        null,
+		null,
+        null,
+		"无"
+    ],
+    [
+        "11",
+        null,
+		"$1 < k \\le 10^9$",
+        null,
+		"保证 $d_i$ 互不相同"
+    ],
+    [
+        "12",
+        null,
+		null,
+        null,
+		"无"
+    ],
+    [
+        "13",
+		"$1\\le n \\le 500000$",
+        "$k=2$",
+        null,
+		null
+    ],
+    [
+        "14",
+        null,
+		"$k=3$",
+        null,
+		null
+    ],
+    [
+        "15",
+        null,
+		"$1 < k \\le 10^9$",
+        null,
+		"保证 $d_i$ 互不相同"
+    ],
+    [
+        "16",
+        null,
+		null,
+		null,
+        null
+    ],
+    [
+        "17",
+        null,
+		null,
+        null,
+		"无"
+    ],
+    [
+        "18",
+        null,
+		null,
+        null,
+        null
+    ],
+    [
+        "19",
+        null,
+		null,
+        null,
+        null
+    ],
+    [
+        "20",
+        null,
+		null,
+        null,
+        null
+    ]
+]

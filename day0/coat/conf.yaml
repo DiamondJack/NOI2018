@@ -1,0 +1,32 @@
+args: {max: 1666, mod: 64123}
+compile: {c: -O2 -lm, cpp: -O2 -lm, pas: -O2}
+data:
+- cases: [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20]
+folder: problem
+memory limit: 1 GB
+name: coat
+packed: false
+partial score: false
+pre: []
+samples:
+- cases: [1]
+- cases: [2]
+time limit: 5.0
+title: {zh-cn: 秘密袭击}
+type: program
+users:
+  banban:
+    check:
+      expected: {==: 100}
+      path: lvx/tle.cpp
+  immortalCO:
+    n2logw:
+      expected: {==: 100}
+      path: immortalCO/n2logw.cpp
+    n2logw_fft.cpp:
+      expected: []
+      path: immortalCO/n2logw_fft.cpp
+    n2w:
+      expected: {<=: 50}
+      path: immortalCO/n2w.cpp
+version: 2

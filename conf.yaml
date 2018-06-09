@@ -1,0 +1,6 @@
+folder: contest
+name: name_for_programers
+short title: {zh-cn: CCF NOI 2018}
+subdir: [day0, day1, day2]
+title: {zh-cn: 全国青少年信息学奥林匹克竞赛}
+version: 2

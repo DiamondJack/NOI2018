@@ -1,0 +1,20 @@
+args: {m: 10, n: 10}
+compile: {c: -O2 -lm, cpp: -O2 -lm, java: '', pas: -O2, py: ''}
+data:
+- cases: [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20]
+folder: problem
+memory limit: 512 MB
+name: chess
+partial score: false
+pre: []
+samples:
+- cases: [1, 2]
+time limit: 1.0
+title: {zh-cn: 一双木棋}
+type: program
+users:
+  ufozgg:
+    std.cpp: {expected: == 100, path: ufozgg/std.cpp}
+  wyz:
+    std.cpp: {expected: == 100, path: wyz/std.cpp}
+version: 2
