@@ -1,0 +1,21 @@
+args: {n: 1000}
+compile: {c: -O2 -lm, cpp: -O2 -lm, java: '', pas: -O2, py: ''}
+data:
+- cases: [1, 2, 3, 4, 5, 6, 7, 8, 9, 10]
+folder: problem
+memory limit: 512 MB
+name: faceless
+partial score: false
+pre: []
+samples:
+- cases: [1, 2, 3, 4]
+time limit: 6.0
+title: {zh-cn: 假面}
+type: program
+users:
+  wyz:
+    60.cpp:
+      expected: []
+      path: wyz/60.cpp
+    std.cpp: {expected: == 100, path: wyz/std.cpp}
+version: 2
