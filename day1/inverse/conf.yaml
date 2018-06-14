@@ -1,0 +1,19 @@
+args: {n: 1000000}
+compile: {c: -O2, cpp: -O2, java: '', pas: -O2, py: ''}
+data:
+- cases: [1, 2]
+folder: problem
+memory limit: 512 MB
+name: inverse
+partial score: false
+pre:
+- cases: [1]
+samples:
+- cases: [1, 2]
+time limit: 1
+title: {zh-cn: 冒泡排序}
+type: program
+users:
+  std:
+    shanquan2.cpp: {expected: == 100, path: std/shanquan2.cpp}
+version: 2
