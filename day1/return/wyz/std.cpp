@@ -12,6 +12,7 @@ inline int read(){
 		ret=ret*10-48+ch;
 		ch=getchar();
 	}
+	return ret;
 }
 
 namespace Yazid{
@@ -89,27 +90,31 @@ void kruskal(){
 	us.init(n);
 	int stamp=n;
 	for (int i=1;i<=_m;++i){
-		int u=us.find(_u[i]);
-		int v=us.find(_v[i]);
+		int u=us.find(_u[id[i]]);
+		int v=us.find(_v[id[i]]);
 		if (u==v) continue;
 		fa[bl[u]]=fa[bl[v]]=++stamp;
 		mind[stamp]=min(mind[bl[u]],mind[bl[v]]);
-		valP[stamp]=_vp[i];
+		valP[stamp]=_vp[id[i]];
 		bl[us._union(u,v)]=stamp;
 	}
 	assert(stamp==n*2-1);
 }
 
 
-int F[N][_logn];
+int F[N][_logn+1];
 void constructF(){
-	memcpy(F[0],fa,sizeof(fa));
+	for (int i=2*n-1;i>=0;--i)
+		F[i][0]=fa[i];
 	for (int k=1;k<=_logn;++k)
-		for (int i=2*n-1;i;--i)
+		for (int i=2*n-1;i>0;--i)
 			F[i][k]=F[F[i][k-1]][k-1];
 }
 
 int multiplicate(int v,int p){
+	#ifdef DEBUG
+	printf("v=%d p=%d\n",v,p);
+	#endif
 	for (int k=_logn;k>=0;--k){
 		int anc=F[v][k];
 		if (anc==0||p>valP[anc]) continue;
@@ -134,27 +139,34 @@ void __main__(){
 		sumArea+=_l[i]*_w[i];
 	}
 	dijkstra(1);
+	cerr<<"[ Yazid Info ] Dijkstra finished."<<endl;
 	
 	clear();
 	sort(id+1,id+_m+1,cmp);
 	ll nowArea=0,sumP=0;
-	_a[_m+1]=0;
 	for (int i=_m;i>0;--i){
-		sumP+=nowArea*(_a[i]-_a[i+1]);
-		if (sumP==0) _vp[i]=0;
-		else _vp[i]=(sumP-1)/sumArea+1;
-		nowArea+=_l[i]*_w[i];
+		sumP+=nowArea*(_a[id[i]]-_a[id[i+1]]);
+		if (sumP==0) _vp[id[i]]=0;
+		else _vp[id[i]]=sumP/sumArea;
+		nowArea+=_l[id[i]]*_w[id[i]];
 	}
 	kruskal();
+	cerr<<"[ Yazid Info ] Kruskal finished."<<endl;
 	
 	constructF();
+	cerr<<"[ Yazid Info ] Array F constructed."<<endl;
 	
+	#ifdef DEBUG
+	for (int i=1;i<=2*n-1;++i)
+		printf("%d : valP=%d mind=%d fa=%d\n",i,valP[i],mind[i],fa[i]);
+	#endif
 	for (int Q=read(),K=read(),S=read(),lastans=0;Q;--Q){
-		int v=(read()+lastans-1)%n+1;
-		int p=(read()+lastans)%(S+1);
+		int v=(read()+K*lastans-1)%n+1;
+		int p=(read()+K*lastans)%(S+1);
 		int top=multiplicate(v,p);
 		printf("%d\n",lastans=mind[top]);
 	}
+	cerr<<"[ Yazid Info ] Yazid is good."<<endl;
 }
 
 };
