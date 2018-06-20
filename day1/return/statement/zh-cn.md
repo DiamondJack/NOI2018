@@ -70,9 +70,12 @@ Yazid 非常讨厌在雨天步行，因此他希望在完成回家这一目标�
 
 第四天所有的边都积水了，因此 Yazid 只能纯靠徒步回家。
 
-为了方便你理解，我们还为你提供了三张图（如下），分别是魔力之都的俯视图、第 $2$ 天的水位图、第 $4$ 天的水位图。
+为了方便你理解，我们还为你提供了三张图（如下），分别是魔力之都的俯视图、**第 $2$ 天**的水位图、**第 $4$ 天**的水位图：
 
-咕 咕 咕
+{{ img('sample1_1.png', size = 0.6, align = 'middle', inline = False) }}
+
+{{ img('sample1_2.png', size = 0.3, inline = True) }}
+{{ img('sample1_3.png', size = 0.3, inline = True) }}
 
 {% do vars.__setitem__('sample_id', 2) -%}
 {{ self.sample_text() }}
