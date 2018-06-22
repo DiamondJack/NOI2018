@@ -1,0 +1,17 @@
+args: {maxm 100000: null, maxn: 100000}
+compile: {c: -O2 -std=c11, cpp: -O2 -std=c++11, java: '', pas: -O2, py: ''}
+data:
+- cases: [1]
+folder: problem
+memory limit: 512 MB
+name: dragon
+partial score: false
+pre:
+- cases: [1]
+samples:
+- cases: [1]
+time limit: 1.0
+title: {zh-cn: 屠龙勇士}
+type: program
+users: {}
+version: 2
