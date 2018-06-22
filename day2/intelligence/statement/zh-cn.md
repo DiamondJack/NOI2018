@@ -70,7 +70,7 @@ C 国和 D 国近年来战火纷飞。
 
 表格中的特殊性质如下：
 
-- 特殊性质 S：保证 $T\le 10$；
+- 特殊性质 S：保证 $T\le 50$；
 
 - 特殊性质 A：保证 $a_i = b_i - 1$；
 
@@ -82,4 +82,4 @@ C 国和 D 国近年来战火纷飞。
 
 注意测试点中的 $T$ 可能会很大，**请控制初始化的复杂度，避免每次清空整个数组**，如使用 `memset(a, 0, sizeof(a))` 或 `fillchar(a, sizeof(a), 0)`。
 
-对于所有的数据，$n\le {{ tl.hn(prob.args['maxn'])  }}, m\le {{ tl.hn(prob.args['maxm'])  }}, c_i\le 10^9, v_i\le 10^9n$。每个测试点中，所有 $n$ 的和不会超过 ${{ tl.hn(20 * prob.args['maxn'])  }}$，所有 $m$ 的和不会超过 ${{ tl.hn(20 * prob.args['maxm'])  }}$，并且 $n\ge 10^3,m\ge 2\times 10^3$ 的数据不会超过 $10$ 组。
+对于所有的数据，$n\le {{ tl.hn(prob.args['maxn'])  }}, m\le {{ tl.hn(prob.args['maxm'])  }}, c_i\le 10^9, v_i\le 2\times 10^9n$。每个测试点中，所有 $n$ 的和不会超过 ${{ tl.hn(20 * prob.args['maxn'])  }}$，所有 $m$ 的和不会超过 ${{ tl.hn(20 * prob.args['maxm'])  }}$。

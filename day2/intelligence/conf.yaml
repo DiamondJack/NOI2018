@@ -8,7 +8,7 @@ name: intelligence
 partial score: false
 pre: []
 samples: 
-  - cases: [1, 2]
+  - cases: [1, 2, 3]
 time limit: 5.0
 title: {zh-cn: 情报中心}
 type: program

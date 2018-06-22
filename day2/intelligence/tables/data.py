@@ -5,8 +5,8 @@ HlfM = tl.hn(30000)
 
 ret = [
 	["测试点",	"$n\\le $",		"$m\\le$",		"特殊性质"	],
-	[0,			tl.hn(2),		tl.hn(3),		"无"			],
-	[0,			tl.hn(10),		tl.hn(30),		"无"			],
+	[0,			tl.hn(2),		tl.hn(3),		"S"			],
+	[0,			tl.hn(10),		tl.hn(30),		"S"			],
 	[0,			tl.hn(200),		tl.hn(300),		"S"			],
 	[0,			tl.hn(1000),	tl.hn(2000),	"SA"			],
 	[0,			HlfN,			HlfM,			"SA"			],
