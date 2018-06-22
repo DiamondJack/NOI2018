@@ -1,0 +1,20 @@
+args: {maxn: 50000, maxm: 100000}
+compile: {c: -O2 -std=c11, cpp: -O2 -std=c++11, java: '', pas: -O2, py: ''}
+data:
+  - cases: [1]
+folder: problem
+memory limit: 512 MB
+name: polygon
+partial score: false
+pre: []
+samples: 
+  - cases: [1, 2]
+time limit: 4.0
+title: {zh-cn: 难题}
+type: program
+users:
+  immortalCO:
+    std:
+      path: jiry_2/std.cpp
+      expected: {==: 100}
+version: 2
