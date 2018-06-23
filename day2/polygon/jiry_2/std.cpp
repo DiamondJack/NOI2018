@@ -1,4 +1,11 @@
-#include <bits/stdc++.h>
+#include <iostream>
+#include <cmath>
+#include <cstring>
+#include <cstdio>
+#include <algorithm>
+#include <vector>
+#include <map>
+#include <cassert>
 using namespace std;
 typedef long long ll;
 #define pb push_back
@@ -384,7 +391,7 @@ int main(){
 	//cout<<allP.size()<<" "<<tot<<endl;
 	for (int i=2;i<=n;i++){
 		int k1=(i-2)/3+1; 
-		//scanf("%d",&k1); 
+		scanf("%d",&k1); 
 		go[k1].push_back(i);
 	}
 	for (int i=1;i<=len;i++) x[i].gettotd();

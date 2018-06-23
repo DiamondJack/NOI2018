@@ -10,7 +10,7 @@ pre: []
 samples: 
   - cases: [1, 2]
 time limit: 4.0
-title: {zh-cn: 难题}
+title: {zh-cn: 多边形}
 type: program
 users:
   immortalCO:
