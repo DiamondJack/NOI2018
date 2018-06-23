@@ -56,17 +56,7 @@
 
 {{ self.title_sample_description() }}
 
-{{ s('sample', 2) }}
-
-{{ self.sample_text() }}
-
-{{ self.title_sample_description() }}
-
-{{ s('sample', 3) }}
-
-{{ self.sample_file() }}
-
-{{ s('subtasks') }}
+该样例和题面中的例子完全相同。两条哈密尔顿回路经过节点的顺序分别为 $(1,2,4,5,3)$ 和 $(1,2,5,4,3)$。
 
 各测试点的数据规模和性质如下表：
 
