@@ -22,4 +22,4 @@ for i in range(10):
 	ret[i].extend(ret[i + 10])
 	res.append(ret)
 
-return merge_ver(ret)
+return merge_ver(res)
