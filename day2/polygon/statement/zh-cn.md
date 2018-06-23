@@ -8,7 +8,7 @@
 
 首先，可怜给出了一棵 $n(n \geq 2)$ 个节点的有根树 $T$，根节点为 $1$。定义叶子节点为除了根以外所有度数恰好为 $1$ 的节点。下图是一个树 $T$ 的例子，其中叶子节点集合为 $\{3,4,5\}$。
 
-{{ img('1.png', size = 0.4, align = 'middle', inline = False) }}
+{{ img('1.png', size = 0.3, align = 'middle', inline = False) }}
 
 接着通过这棵树，可怜构造了一个序列 $A$:
 
@@ -26,7 +26,7 @@
 
 当 $K = 1$ 或 $2$ 时，上面的例子得到的图 $G$ 都如下图所示：
 
-{{ img('2.png', size = 0.4, align = 'middle', inline = False) }}
+{{ img('2.png', size = 0.3, align = 'middle', inline = False) }}
 
 现在可怜想让你来计算一下 $G$ 中不同的哈密尔顿回路数量有多少条，答案可能很大，请对 $998244353$ 取模后输出。
 
