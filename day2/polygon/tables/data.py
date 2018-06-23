@@ -8,7 +8,7 @@ for i in range(6):
 		ans.append("无")
 	else:
 		ans.append("A")
-	res.append(ans)
+	ret.append(ans)
 for i in range(6):
 	ans = [str(11 + i), "$\leq 1000$", "$\leq 2$"]
 	if i >= 3:
