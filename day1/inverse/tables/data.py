@@ -6,7 +6,7 @@ S=[9,13,16]
 for i in range(20):
 	n = N[i]
 	m = M[i]
-	w = "\\text{无性质}"
+	w = "\\text{无}"
 	if(i in S):
 		w = "\\text{输入均是长度为} n \\text{字典序最小的排列}" 
 		#\\text{输入的均是长度为} n \\text{的字典序最小的排列}
