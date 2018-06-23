@@ -20,7 +20,7 @@ namespace Yazid{
 const int N=400005;
 const int M=800005;
 const int _logn=20;
-const int inf=1e9;
+const int inf=2e9;
 #define bin(x) (1<<(x))
 
 struct Edge{
@@ -75,13 +75,14 @@ struct UnionSet{
 } us;
 
 int fa[N],valP[N];
-int _u[M],_v[M],_l[M],_w[N],_a[M],_vp[M],_m;
+int _u[M],_v[M],_l[M],_a[M],_m;
 int id[M];
 bool cmp(int u,int v){
 	return _a[u]>_a[v];
 }
 int bl[N];
 void kruskal(){
+	sort(id+1,id+_m+1,cmp);
 	for (int i=1;i<=n;++i){
 		bl[i]=i;
 		valP[i]=inf;
@@ -95,7 +96,7 @@ void kruskal(){
 		if (u==v) continue;
 		fa[bl[u]]=fa[bl[v]]=++stamp;
 		mind[stamp]=min(mind[bl[u]],mind[bl[v]]);
-		valP[stamp]=_vp[id[i]];
+		valP[stamp]=_a[id[i]]-1;
 		bl[us._union(u,v)]=stamp;
 	}
 	assert(stamp==n*2-1);
@@ -127,29 +128,18 @@ void __main__(){
 	n=read();
 	_m=read();
 	clear();
-	ll sumArea=0;
 	for (int i=1;i<=_m;++i){
 		id[i]=i;
 		_u[i]=read();
 		_v[i]=read();
 		_l[i]=read();
-		_w[i]=read();
 		_a[i]=read();
 		addEdge(_u[i],_v[i],_l[i]);
-		sumArea+=_l[i]*_w[i];
 	}
 	dijkstra(1);
 	cerr<<"[ Yazid Info ] Dijkstra finished."<<endl;
 	
 	clear();
-	sort(id+1,id+_m+1,cmp);
-	ll nowArea=0,sumP=0;
-	for (int i=_m;i>0;--i){
-		sumP+=nowArea*(_a[id[i]]-_a[id[i+1]]);
-		if (sumP==0) _vp[id[i]]=0;
-		else _vp[id[i]]=sumP/sumArea;
-		nowArea+=_l[id[i]]*_w[id[i]];
-	}
 	kruskal();
 	cerr<<"[ Yazid Info ] Kruskal finished."<<endl;
 	
