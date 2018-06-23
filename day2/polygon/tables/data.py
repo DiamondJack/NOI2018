@@ -24,7 +24,7 @@ for i in range(4):
 		ans.append("A")
 	ret.append(ans)
 for i in range(10):
-	ret[i].extend("")
+	ret[i].extend([""])
 	ret[i].extend(ret[i + 10])
 	res.append(ret[i])
 
