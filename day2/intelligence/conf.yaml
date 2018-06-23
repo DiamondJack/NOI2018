@@ -1,15 +1,34 @@
 args: {maxn: 50000, maxm: 100000}
 compile: {c: -O2, cpp: -O2, java: '', pas: -O2, py: ''}
 data:
-  - cases: [1]
+  - {cases: [1], score: 5}
+  - {cases: [2], score: 5}
+  - {cases: [3], score: 5}
+  - {cases: [4], score: 5}
+  - {cases: [5], score: 5}
+  - {cases: [6], score: 5}
+  - {cases: [7], score: 5}
+  - {cases: [8], score: 5}
+  - {cases: [9], score: 5}
+  - {cases: [10], score: 5}
+  - {cases: [11], score: 5}
+  - {cases: [12], score: 5}
+  - {cases: [13], score: 5}
+  - {cases: [14], score: 5}
+  - {cases: [15], score: 5}
+  - {cases: [16], score: 5}
+  - {cases: [17], score: 5}
+  - {cases: [18], score: 5}
+  - {cases: [19], score: 5}
+  - {cases: [20], score: 5}
 folder: problem
 memory limit: 512 MB
 name: center
 partial score: false
 pre: []
 samples: 
-  - cases: [1, 2, 3]
-time limit: 5.0
+  - cases: [1, 2, 3, 4]
+time limit: 8.0
 title: {zh-cn: 情报中心}
 type: program
 users:
@@ -19,5 +38,11 @@ users:
       expected: {==: 100}
     nm2:
       path: immortalCO/nm2.cpp
-      expected: {<: 100}
+      expected: {==: 15}
+    nm:
+      path: immortalCO/nm.cpp
+      expected: {==: 20}
+    randiter:
+      path: immortalCO/randiter.cpp
+      expected: {<=: 60}
 version: 2

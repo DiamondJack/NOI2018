@@ -52,19 +52,20 @@ namespace banban {
 		return ans;
 	}
 	bool cmp(int a, int b) {
-		return 	q[a].second + dis(q[a].first.first, q[a].first.second, qlca[a])
-		>		q[b].second + dis(q[b].first.first, q[b].first.second, qlca[b]);
+		return 	-q[a].second + dis(q[a].first.first, q[a].first.second, qlca[a])
+		>		-q[b].second + dis(q[b].first.first, q[b].first.second, qlca[b]);
 	}
 
 	void __main__() {
-		cin >> N >> M >> S;
-		srand(N + M + Convert{&S[0]}.v + time(0));
+		int K;
+		cin >> N >> M >> S >> K;
+		srand(K);
 		stringstream tmp;
 		tmp << "mkrtmp_";
 		for(int i = 0; i < 20; ++i) tmp << rand() % 9;
 		string raw = tmp.str();
 		tmp.str("");
-		tmp << "echo " << N << " " << M << " " << S << " | pypy treemkr.py > " << (raw + ".in");
+		tmp << "echo " << N << " " << M << " " << S << " | python treemkr.py > " << (raw + ".in");
 		if(system(tmp.str().c_str())) {
 			puts("treemkr error!");
 			exit(-1);
@@ -148,7 +149,10 @@ namespace banban {
 			// for(int i = 1; i <= M; ++i) fprintf(stderr, "%lld\n", ans - work(i).first);
 		}
 		printf("%d\n", M);
-		for(int i = 1; i <= M; ++i) printf("%d %d %lld\n", q[i].first.first, q[i].first.second, max(0ll, q[i].second));
+		ll min = 1e18;
+		for(int i = 1; i <= M; ++i) if(q[i].second >= -1e15 && q[i].second < min)
+			min = q[i].second;
+		for(int i = 1; i <= M; ++i) printf("%d %d %lld\n", q[i].first.first, q[i].first.second, max(0ll, q[i].second - min));
 		fprintf(stderr, "Done ans = %lld\n", ans);
 
 		tmp.str("");

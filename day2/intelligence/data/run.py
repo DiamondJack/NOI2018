@@ -6,7 +6,7 @@ HlfM = 30000
 from os import *
 
 ret = [
-	["测试点",	"$n\\le $",		"$m\\le$",		"特殊性质"	],
+	[" ",	"$n\\le $",		"$m\\le$",		" "	],
 	[0,			2,			3,		"S"			],
 	[0,			10,			30,		"S"			],
 	[0,			200,			300,		"S"			],
@@ -34,5 +34,5 @@ system("g++ std.cpp -o std -O2")
 for i in xrange(1, 21):
 	R = ret[i]
 	if R[2] == "$n$":	R[2] = R[1]
-	system("echo %d.in %d %d %s | pypy casemkr.py" % (i, R[1], R[2], R[3]))
+	system("echo %d.in %d %d %s | python casemkr.py" % (i, R[1], R[2], R[3]))
 	system("/usr/bin/time ./std < %d.in > %d.ans" % (i, i))
