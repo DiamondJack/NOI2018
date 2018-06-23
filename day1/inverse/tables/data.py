@@ -8,7 +8,7 @@ for i in range(25):
 	m = M[i]
 	w = "\\text{无}"
 	if(i in S):
-		w = "\\text{输入均是长度为} n \\text{字典序最小的排列}" 
+		w = "\\forall i ~~p_i=i" 
 		#\\text{输入的均是长度为} n \\text{的字典序最小的排列}
 	row = [
 		i+1,
