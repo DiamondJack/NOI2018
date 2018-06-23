@@ -20,6 +20,6 @@ for i in range(4):
 	ret.append(ans)
 for i in range(10):
 	ret[i].extend(ret[i + 10])
-	res.append(ret)
+	res.append(ret[i])
 
 return merge_ver(res)
