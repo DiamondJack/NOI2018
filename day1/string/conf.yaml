@@ -1,16 +1,16 @@
 !!python/unicode 'args': {!!python/unicode 'n': 1000}
-!!python/unicode 'compile': {!!python/unicode 'c': !!python/unicode '-O2 -std=c14',
-  !!python/unicode 'cpp': !!python/unicode '-O2 -std=c++14', !!python/unicode 'java': !!python/unicode '',
+!!python/unicode 'compile': {!!python/unicode 'c': !!python/unicode '-O2',
+  !!python/unicode 'cpp': !!python/unicode '-O2', !!python/unicode 'java': !!python/unicode '',
   !!python/unicode 'pas': !!python/unicode '-O2', !!python/unicode 'py': !!python/unicode ''}
 !!python/unicode 'data': []
 !!python/unicode 'folder': !!python/unicode 'problem'
 !!python/unicode 'memory limit': !!python/unicode '512 MB'
-!!python/unicode 'name': string
+!!python/unicode 'name': name
 !!python/unicode 'partial score': false
 !!python/unicode 'pre': []
 !!python/unicode 'samples': []
 !!python/unicode 'time limit': 1.0
-!!python/unicode 'title': {!!python/unicode 'zh-cn': 敦敦敦敦敦敦的字符串串串串串串串串串串串串}
+!!python/unicode 'title': {!!python/unicode 'zh-cn': 你的名字}
 !!python/unicode 'type': !!python/unicode 'program'
 !!python/unicode 'users': {}
 !!python/unicode 'version': 2

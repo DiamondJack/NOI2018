@@ -1,4 +1,11 @@
-#include <bits/stdc++.h>
+#include <iostream>
+#include <cmath>
+#include <cstring>
+#include <cstdio>
+#include <algorithm>
+#include <vector>
+#include <map>
+#include <cassert>
 using namespace std;
 typedef long long ll;
 #define pb push_back
@@ -14,7 +21,7 @@ struct atom{
 	int totd;
 	void gettotd(){
 		totd=0;
-		for (int i=0;i<=m;i++) totd+=d[i];
+		for (int i=0;i<=m;i++) totd+=2-d[i];
 	}
 	ll gethash(){
 		ll k1=0;
@@ -154,7 +161,6 @@ void trylink(int now,int mid,int n,int *A,int *d,int u,int v){
 		if (res.m!=-1){
 			res.checkvalid();
 			int where=addin(res);
-			gof[u][v].push_back(mp(where,1));
 			if (bo[where]!=sign){
 				bo[where]=sign; gof[u][v].push_back(mp(where,1));
 				idx[where]=gof[u][v].size()-1;
@@ -244,15 +250,12 @@ int mergeleaf(int k1){
 		for (int a=0;a<b.size();a++)
 			for (int c=a+1;c<b.size();c++){
 				memcpy(A,x[k1].A,sizeof A);
-				memcpy(d,x[k1].d,sizeof x[k1].d);
+				memcpy(d,x[k1].d,sizeof d);
 				A[n+1]=ma+1; d[n+1]=0;
 				if (link(A,d,b[a],n+1,n+1)==0||link2(A,d,b[c],n+1,n+1)==0) continue;
 				if (checkfinal(A,d,n+1)) ans++; 
 			}
 	}
-	//printf("asd\n");
-	//x[k1].print();
-	//cout<<ans<<endl;
 	return ans;
 }
 int getansway(int now,int mid,int n,int* A,int *d){
@@ -324,8 +327,9 @@ void getans(int k1){
 	for (int i=1;i<=len;i++)
 		if (f[1][i])
 			for (int j=1;j<=len;j++)
-				if (f[k1][j])
+				if (f[k1][j]){
 					ans=(ans+1ll*f[1][i]*f[k1][j]%mo*mergestate(i,j))%mo;
+				}
 	printf("%d\n",ans);
 }
 void treedp(int k1){
@@ -333,10 +337,10 @@ void treedp(int k1){
 	for (int i=0;i<go[k1].size();++i){
 		int j=go[k1][i];
 		if (k1==1&&i==go[k1].size()-1){
-			treedp(j);
 			if (size[j]==1){
 				getansleaf();
 			} else {
+				treedp(j);
 				getans(j);
 			}
 		} else if (size[j]==1){
@@ -355,8 +359,9 @@ void treedp(int k1){
 				int loc1=allP[a].first,loc2=allP[a].second;
 				int now=1ll*g[loc1]*f[j][loc2]%mo;
 				if (now){
-					for (int b=0;b<gof[loc1][loc2].size();++b)
+					for (int b=0;b<gof[loc1][loc2].size();++b){
 						update(f[k1][gof[loc1][loc2][b].fi],1ll*now*gof[loc1][loc2][b].se);
+					}
 				}
 			}
 		}
@@ -384,25 +389,17 @@ int main(){
 	//cout<<allP.size()<<" "<<tot<<endl;
 	for (int i=2;i<=n;i++){
 		int k1=(i-2)/3+1; 
-		//scanf("%d",&k1); 
+		scanf("%d",&k1); 
 		go[k1].push_back(i);
 	}
 	for (int i=1;i<=len;i++) x[i].gettotd();
 	dfs1(1);
 	treedp(1);
-	/*int num=0;
-	for (int dd=0;dd<=10;dd++){
-		int flag=0;
-		for (int i=1;i<=n;i++){
-			if (de[i]!=dd) continue; flag=1;
-			num=0;
-			for (int j=1;j<=len;j++)
-				if (f[i][j]){
-					num++;
-					//cout<<"asd "<<i<<" "<<j<<" "<<f[i][j]<<endl;
-				}
-			cout<<num<<" ";
-		}
-		if (flag) puts("");
+	/*for (int i=1;i<=n;i++){
+		for (int j=1;j<=len;j++)
+			if (f[i][j]){
+				printf("state %d %d %d\n",i,j,f[i][j]);
+				x[j].print();
+			}
 	}*/
 }

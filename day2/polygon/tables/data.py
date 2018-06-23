@@ -1,33 +1,31 @@
-MaxN = tl.hn(50000)
-MaxM = tl.hn(100000)
-HlfN = tl.hn(10000)
-HlfM = tl.hn(30000)
+res = [["编号","$n$","$K$","特殊性质","","编号","$n$","$K$","特殊性质"]]
+ret=[]
+for i in range(4):
+	ret.append([str(i + 1), "$\leq " + str(i * 5 + 5) + "$", "$\leq 3$", "无"])
+for i in range(6):
+	ans=[str(5 + i), "$\leq 1000$", "$=1$"]
+	if i >= 3:
+		ans.append("无")
+	else:
+		ans.append("A")
+	ret.append(ans)
+for i in range(6):
+	ans = [str(11 + i), "$\leq 1000$", "$\leq 2$"]
+	if i >= 3:
+		ans.append("无")
+	else:
+		ans.append("A")
+	ret.append(ans)
+for i in range(4):
+	ans = [str(17 + i), "$\leq 1000$", "$\leq 3$"]
+	if i >= 2:
+		ans.append("无")
+	else:
+		ans.append("A")
+	ret.append(ans)
+for i in range(10):
+	ret[i].extend([""])
+	ret[i].extend(ret[i + 10])
+	res.append(ret[i])
 
-ret = [
-	["测试点",	"$n\\le $",		"$m\\le$",		"特殊性质"	],
-	[0,			tl.hn(2),		tl.hn(3),		"无"			],
-	[0,			tl.hn(10),		tl.hn(30),		"无"			],
-	[0,			tl.hn(200),		tl.hn(300),		"S"			],
-	[0,			tl.hn(1000),	tl.hn(2000),	"SA"			],
-	[0,			HlfN,			HlfM,			"SA"			],
-	[0,			MaxN,			MaxM,			"SA"			],
-	[0,			HlfN,			HlfM,			"SB"			],
-	[0,			MaxN,			MaxM,			"SB"			],
-	[0,			MaxN,			MaxM,			"SB"			],
-	[0,			HlfN,			"$n$",			"SC"		],
-	[0,			MaxN,			"$n$",			"C"			],
-	[0,			MaxN,			"$n$",			"C"			],
-	[0,			HlfN,			HlfM,			"SD"		],
-	[0,			HlfN,			HlfM,			"D"			],
-	[0,			MaxN,			MaxM,			"D"			],
-	[0,			MaxN,			MaxM,			"D"			],
-	[0,			HlfN,			HlfM,			"S"			],
-	[0,			HlfN,			HlfM,			"S"			],
-	[0,			MaxN,			MaxM,			"无"			],
-	[0,			MaxN,			MaxM,			"无"			],
-]
-
-for i in range(1, len(ret)):
-	ret[i][0] = str(i)
-
-return merge_ver(ret)
+return merge_ver(res)
