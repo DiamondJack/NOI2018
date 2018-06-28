@@ -1,4 +1,4 @@
-CFLAGS=-std=c++11
+CFLAGS=-std=c++11 -O2
 
 dijkstra: dijkstra.cpp core.hpp
 	g++ dijkstra.cpp -o dijkstra ${CFLAGS}

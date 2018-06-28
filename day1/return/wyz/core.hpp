@@ -47,7 +47,7 @@ void error(string i){
 
 const int N=400005;
 const int M=800005;
-const int _logn=20;
+const int _logn=17;
 const int inf=2e9;
 #define bin(x) (1<<(x))
 
