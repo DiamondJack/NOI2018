@@ -2,6 +2,7 @@
 
 using namespace std;
 
+// #define MULTIPLE_CASES
 
 namespace Yazid{
 
@@ -73,6 +74,29 @@ void dijkstra(int _s){
 				pq.push(mp(mind[v],v));
 			}
 		}
+	}
+}
+#endif
+
+#ifdef SPFA
+int q[N],qh,qt;
+bool exist[N];
+void spfa(int _s){
+	memset(mind,127,sizeof(mind));
+	memset(exist,0,sizeof(exist));
+	qh=qt=0;
+	q[++qt]=_s;exist[_s]=1;mind[_s]=0;
+	while (qh!=qt){
+		int u=q[(++qh)%=n];
+		for (int i=g[u];i;i=e[i].next){
+			int v=e[i].adj;
+			if (mind[v]<=mind[u]+e[i].len) continue;
+			mind[v]=mind[u]+e[i].len;
+			if (exist[v]) continue;
+			q[(++qt)%=n]=v;
+			exist[v]=1;
+		}
+		exist[u]=0;
 	}
 }
 #endif
@@ -183,6 +207,9 @@ void __main__(){
 
 #ifdef __MAIN__
 int main(int argc,char** argv){
+#ifdef MULTIPLE_CASES
+for (int T=read();T;T--)
+#endif
 	Yazid::__main__();
 	return 0;
 }

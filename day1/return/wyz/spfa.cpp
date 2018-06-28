@@ -1,4 +1,4 @@
 #define FAST_READ
-#define DIJKSTRA
+#define SPFA
 #define __MAIN__
 #include "core.hpp"
