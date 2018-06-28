@@ -10,7 +10,7 @@ pre: []
 samples:
 - cases: [1, 2]
 - cases: [3, 4, 5]
-time limit: 1.0
+time limit: 4.0
 title: {zh-cn: 归程}
 type: program
 users:
