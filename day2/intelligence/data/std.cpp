@@ -192,7 +192,7 @@ namespace __main__ {
 			}
 			dfs_sol(1, 0);
 			reinit(Q[1]);
-			if(ans <= -inf / 2) std::cout << "FAILED" << std::endl;
+			if(ans <= -inf / 2) std::cout << "F" << std::endl;
 			else std::cout << ans - mov * 2 << std::endl;
 		}
 	}

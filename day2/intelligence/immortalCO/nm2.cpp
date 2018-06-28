@@ -48,7 +48,7 @@ int main() {
 				if(vis_cur) ans = std::max(ans, cur + base + val[j]);
 			}
 		}
-		if(ans <= -inf) std::cout << "FAILED" << std::endl;
+		if(ans <= -inf) std::cout << "F" << std::endl;
 		else std::cout << ans - mov * 2 << std::endl;
 	}
 }

@@ -17,11 +17,18 @@ MM = []
 LN = 10**6
 LM = 2*10**6
 
-for i in xrange(10):
-	NN.append(N)
-	MM.append(M)
-	LN -= N
-	LM -= M
+if not 'S' in set(list(S)):
+	for i in xrange(10):
+		NN.append(N)
+		MM.append(M)
+		LN -= N
+		LM -= M
+else:
+	for i in xrange(min(50, LN / N, LM / M)):
+		NN.append(N)
+		MM.append(M)
+		LN -= N
+		LM -= M
 
 def random_split(N, M, Min):
 	N -= M * Min
@@ -61,10 +68,11 @@ MAXM = M
 for (N, M) in OP:
 	SS = S
 	assert N <= MAXN and M <= MAXM
-	if randint(1, 10) == 1:	SS += 'A'
-	if randint(1, 10) == 1:	SS += 'B'
-	if randint(1, 10) == 1:	SS += 'C'
-	if randint(1, 10) == 1:	SS += 'D'
+	if N != MAXN or M != MAXM:
+		if randint(1, 10) == 1:	SS += 'A'
+		if randint(1, 10) == 1:	SS += 'B'
+		if randint(1, 10) == 1:	SS += 'C'
+		if randint(1, 10) == 1:	SS += 'D'
 	if 'C' in SS:
 		M = min(N, M)
-	system("echo %d %d %s | ./mkr >> %s" % (N, M, SS, F))
+	system("echo %d %d %s %d | ./mkr >> %s" % (N, M, SS, randint(1, 10**9), F))
