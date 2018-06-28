@@ -1,5 +1,5 @@
-std: std.cpp core.hpp
-	g++ std.cpp -o std -std=c++11
+dijkstra: dijkstra.cpp core.hpp
+	g++ dijkstra.cpp -o dijkstra -std=c++11
 
 spfa: spfa.cpp core.hpp
 	g++ spfa.cpp -o spfa -std=c++11
@@ -7,5 +7,11 @@ spfa: spfa.cpp core.hpp
 debug: debug.cpp core.hpp
 	g++ debug.cpp -o debug -std=c++11
 
+std.cpp: core.hpp
+	./get_std.sed core.hpp >std.cpp
+
+std: std.cpp
+	g++ std.cpp -o std -std=c++11
+
 clean:
-	rm std spfa debug
+	rm dijkstra spfa debug std.cpp std
