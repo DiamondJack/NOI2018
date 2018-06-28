@@ -28,6 +28,22 @@ typedef long long ll;
 typedef pair<int,int> pii;
 #define pb push_back
 #define mp make_pair
+namespace Info{
+void info(string i){
+	#ifndef NOINFO
+	cerr<<"[ Yazid Info ] "<<i<<endl;
+	#endif
+}
+void warning(string i){
+	#ifndef NOINFO
+	cerr<<"[ Yazid Warning! ] "<<i<<endl;
+	#endif
+}
+void error(string i){
+	cerr<<"[ Yazid Error!!!! ] "<<i<<endl;
+	exit(0);
+}
+};
 
 const int N=400005;
 const int M=800005;
@@ -45,7 +61,7 @@ void addEdge(int u,int v,int w=0){
 	e[++m]=Edge(v,g[u],w);g[u]=m;
 	e[++m]=Edge(u,g[v],w);g[v]=m;
 }
-void clear(){
+void clearEdges(){
 	memset(g,0,sizeof(g));m=1;
 }
 
@@ -53,6 +69,7 @@ void clear(){
 int mind[N];
 
 #ifdef DIJKSTRA
+namespace Dijkstra{
 bool flag[N];
 priority_queue<pii,vector<pii>, greater<pii> > pq;
 void dijkstra(int _s){
@@ -74,9 +91,11 @@ void dijkstra(int _s){
 		}
 	}
 }
+};
 #endif
 
 #ifdef SPFA
+namespace Spfa{
 int q[N],qh,qt;
 bool exist[N];
 void spfa(int _s){
@@ -97,8 +116,13 @@ void spfa(int _s){
 		exist[u]=0;
 	}
 }
+};
 #endif
 
+int _u[M],_v[M],_l[M],_a[M],_m;
+
+#ifdef KRUSKAL
+namespace Kruskal{
 struct UnionSet{
 	int f[N];
 	void makeSet(int x){f[x]=x;}
@@ -111,13 +135,13 @@ struct UnionSet{
 } us;
 
 int fa[N],valP[N];
-int _u[M],_v[M],_l[M],_a[M],_m;
 int id[M];
 bool cmp(int u,int v){
 	return _a[u]>_a[v];
 }
 int bl[N];
 void kruskal(){
+	for (int i=1;i<=_m;++i) id[i]=i;
 	sort(id+1,id+_m+1,cmp);
 	for (int i=1;i<=n;++i){
 		bl[i]=i;
@@ -137,7 +161,6 @@ void kruskal(){
 	}
 	assert(stamp==n*2-1);
 }
-
 
 int F[N][_logn+1];
 void constructF(){
@@ -159,46 +182,94 @@ int multiplicate(int v,int p){
 	}
 	return v;
 }
+};
+#endif
+
+#ifndef KRUSKAL
+namespace ForceQuery{
+int q[N],qh,qt;
+bool vis[N];
+void bfs(int _s,int p,int& res){
+	res=inf;
+	memset(vis,0,sizeof(vis));
+	qh=qt=0;
+	q[++qt]=_s;vis[_s]=1;
+	while (qh<qt){
+		int u=q[++qh];
+		res=min(res,mind[u]);
+		for (int i=g[u];i;i=e[i].next)if (_a[i>>1]>p){
+			int v=e[i].adj;
+			if (vis[v]) continue;
+			q[++qt]=v;
+			vis[v]=1;
+		}
+	}
+}
+};
+#endif
+
+void precompute(){
+	#ifndef DIJKSTRA
+	#ifndef SPFA
+	Info::error("Shortest path not calculated!!!");
+	exit(0);
+	#endif
+	#endif
+	#ifdef DIJKSTRA
+	Dijkstra::dijkstra(1);
+	Info::info("Dijkstra finished.");
+	#endif
+	#ifdef SPFA
+	Spfa::spfa(1);
+	Info::info("SPFA finished.");
+	#endif
+	
+	
+	#ifdef KRUSKAL
+	Kruskal::kruskal();
+	Info::info("Kruskal finished.");
+	
+	Kruskal::constructF();
+	Info::info("Array F constructed.");
+	
+	// #ifdef DEBUG
+	// for (int i=1;i<=2*n-1;++i)
+		// printf("%d : valP=%d mind=%d fa=%d\n",i,valP[i],mind[i],fa[i]);
+	// #endif
+	#endif
+}
+
+int query(int v,int p){
+	#ifdef KRUSKAL
+	int top=Kruskal::multiplicate(v,p);
+	return mind[top];
+	#endif
+	#ifndef KRUSKAL
+	int ret=0;
+	ForceQuery::bfs(v,p,ret);
+	return ret;
+	#endif
+}
 
 void __main__(){
 	n=read();
 	_m=read();
-	clear();
+	clearEdges();
 	for (int i=1;i<=_m;++i){
-		id[i]=i;
 		_u[i]=read();
 		_v[i]=read();
 		_l[i]=read();
 		_a[i]=read();
 		addEdge(_u[i],_v[i],_l[i]);
 	}
-	#ifdef DIJKSTRA
-	dijkstra(1);
-	cerr<<"[ Yazid Info ] Dijkstra finished."<<endl;
-	#endif
-	#ifdef SPFA
-	spfa(1);
-	cerr<<"[ Yazid Info ] SPFA finished."<<endl;
-	#endif
+	precompute();
 	
-	clear();
-	kruskal();
-	cerr<<"[ Yazid Info ] Kruskal finished."<<endl;
-	
-	constructF();
-	cerr<<"[ Yazid Info ] Array F constructed."<<endl;
-	
-	#ifdef DEBUG
-	for (int i=1;i<=2*n-1;++i)
-		printf("%d : valP=%d mind=%d fa=%d\n",i,valP[i],mind[i],fa[i]);
-	#endif
 	for (int Q=read(),K=read(),S=read(),lastans=0;Q;--Q){
 		int v=(read()+K*lastans-1)%n+1;
 		int p=(read()+K*lastans)%(S+1);
-		int top=multiplicate(v,p);
-		printf("%d\n",lastans=mind[top]);
+		printf("%d\n",lastans=query(v,p));
 	}
-	cerr<<"[ Yazid Info ] Yazid is good."<<endl;
+	Info::info("Yazid saikou!");
 }
 
 };

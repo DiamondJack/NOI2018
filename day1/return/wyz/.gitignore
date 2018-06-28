@@ -2,4 +2,5 @@ std.cpp
 std
 dijkstra
 spfa
+force
 debug

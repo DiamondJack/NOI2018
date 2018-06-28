@@ -6,4 +6,9 @@
 1 i\
 #define DIJKSTRA
 1 i\
+#define KRUSKAL
+1 i\
 #define __MAIN__
+1 i\
+#define NOINFO
+
