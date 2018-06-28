@@ -36,6 +36,16 @@ users:
     mlogn:
       path: immortalCO/mlogn.cpp
       expected: {==: 100}
+    mlogn_difflca:
+      path: immortalCO/mlogn_difflca.cpp
+      expected:
+        ">=": 20
+        "<=": 65
+    mlogn_samelca:
+      path: immortalCO/mlogn_samelca.cpp
+      expected:
+        ">=": 15
+        "<=": 60
     nm2:
       path: immortalCO/nm2.cpp
       expected: {==: 15}
