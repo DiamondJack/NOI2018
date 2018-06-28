@@ -6,9 +6,17 @@ memory limit: 512 MB
 name: return
 partial score: false
 pre: []
-samples: []
+samples:
+- cases: [1, 2]
 time limit: 1.0
 title: {zh-cn: 归程}
 type: program
-users: {}
+users:
+  wyz:
+    dijkstra.cpp:
+      expected: []
+      path: wyz/dijkstra.cpp
+    spfa.cpp:
+      expected: []
+      path: wyz/spfa.cpp
 version: 2

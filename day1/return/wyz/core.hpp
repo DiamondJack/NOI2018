@@ -1,16 +1,6 @@
 #include <bits/stdc++.h>
 
 using namespace std;
-
-// #define MULTIPLE_CASES
-
-namespace Yazid{
-
-typedef long long ll;
-typedef pair<int,int> pii;
-#define pb push_back
-#define mp make_pair
-
 #ifdef FAST_READ
 inline int read(){
 	int ret=0;char ch=getchar();
@@ -30,6 +20,14 @@ inline int read(){
 }
 #endif
 
+#define MULTIPLE_CASES
+
+namespace Yazid{
+
+typedef long long ll;
+typedef pair<int,int> pii;
+#define pb push_back
+#define mp make_pair
 
 const int N=400005;
 const int M=800005;
