@@ -89,7 +89,7 @@ namespace banban {
 			}
 			for(int i = 1; i <= N; ++i) top[i] = (i == cho[fa[i]]) ? top[fa[i]] : i;
 			cin >> M;
-			assert(1 <= M);
+			assert(0 <= M);
 			sumM += M;
 			maxM = max(maxM, M);
 			set<int> fuck;

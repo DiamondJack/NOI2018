@@ -1,26 +1,7 @@
 args: {maxn: 50000, maxm: 100000}
-compile: {c: -O2, cpp: -O2, java: '', pas: -O2, py: ''}
+compile: {c: -O2 -lm, cpp: -O2 -lm, java: '', pas: -O2, py: ''}
 data:
-  - {cases: [1], score: 5}
-  - {cases: [2], score: 5}
-  - {cases: [3], score: 5}
-  - {cases: [4], score: 5}
-  - {cases: [5], score: 5}
-  - {cases: [6], score: 5}
-  - {cases: [7], score: 5}
-  - {cases: [8], score: 5}
-  - {cases: [9], score: 5}
-  - {cases: [10], score: 5}
-  - {cases: [11], score: 5}
-  - {cases: [12], score: 5}
-  - {cases: [13], score: 5}
-  - {cases: [14], score: 5}
-  - {cases: [15], score: 5}
-  - {cases: [16], score: 5}
-  - {cases: [17], score: 5}
-  - {cases: [18], score: 5}
-  - {cases: [19], score: 5}
-  - {cases: [20], score: 5}
+- cases: [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20]
 folder: problem
 memory limit: 512 MB
 name: center

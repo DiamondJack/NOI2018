@@ -1,5 +1,5 @@
 args: {maxn: 50000, maxm: 100000}
-compile: {c: -O2 -std=c11, cpp: -O2 -std=c++11, java: '', pas: -O2, py: ''}
+compile: {c: -O2 -lm, cpp: -O2 -lm, java: '', pas: -O2, py: ''}
 data:
   - cases: [1]
 folder: problem
