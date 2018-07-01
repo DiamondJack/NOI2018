@@ -18,12 +18,13 @@
 #define pb push_back
 using namespace std;
 typedef long long LL;
-const int N=210000;
+const int N=1010000;
+int maxdep=0;
 char str[N];
 char qs[N];
 int n;
-int go[N<<1][26],tot,last,fail[N<<1],len[N<<1];
-int ort[N<<1];
+int go[N][26],tot,last,fail[N],len[N];
+int ort[N];
 void initsam(){
 	tot=last=1;
 }
@@ -43,8 +44,8 @@ void append(int c,int rt){
     fail[np]=nt;
     rep(i,0,25)go[nt][i]=go[gt][i];for(;p&&go[p][c]==gt;p=fail[p])go[p][c]=nt;
 }
-int root[N<<1];
-int cl[N*65],cr[N*65],sum[N*65],segtot;
+int root[N];
+int cl[N*35],cr[N*35],sum[N*35],segtot;
 int id[N*2];
 void segadd(int &me,int l,int r,int x,int v){
 	int d=++segtot;
@@ -84,7 +85,7 @@ lk stree[N<<1];
 int stot;
 int dfn[N],ed[N],dftot;
 int dep[N];
-int ff[20][N];
+int ff[21][N];
 int segask(int me,int l,int r,int up){
 	if(l>up)return 0;
 	if(!sum[me])return 0;
@@ -104,15 +105,16 @@ void dfs(int x){
 	for(int u=head[x];u;u=stree[u].np){
 		int y=stree[u].p;
 		dep[y]=dep[x]+1;
+		maxdep=max(maxdep,dep[y]);
 		dfs(y);
 	}
 	ed[x]=dftot;
 }
 int lca(int a,int b){
 	if(dep[a]<dep[b])swap(a,b);
-	per(i,19,0)if((1<<i)&(dep[a]-dep[b]))a=ff[i][a];
+	per(i,20,0)if((1<<i)&(dep[a]-dep[b]))a=ff[i][a];
 	if(a==b)return a;
-	per(i,19,0)if(ff[i][a]!=ff[i][b]){
+	per(i,20,0)if(ff[i][a]!=ff[i][b]){
 		a=ff[i][a];b=ff[i][b];
 	}
 	return fail[a];
@@ -139,7 +141,7 @@ void initall(){
 	rep(i,1,tot){
 		ff[0][i]=fail[i];
 	}
-	rep(j,1,19)rep(i,1,tot)ff[j][i]=ff[j-1][ff[j-1][i]];
+	rep(j,1,20)rep(i,1,tot)ff[j][i]=ff[j-1][ff[j-1][i]];
 }
 pii trace[N*3];
 int t;
@@ -179,6 +181,9 @@ inline bool cmp2(const pii &x,const pii &y){
 }
 pii po[N<<3];
 int m=0;
+int dj[N];
+int cho;
+int ret=0;
 //
 namespace core{
 	int head[N],np[N],tot,p[N];
@@ -193,9 +198,21 @@ namespace core{
 		}
 		malen[x]=min(malen[x],len[x]);
 	}
+	void sou(int x){
+		if(!x)return;
+		if(dj[x]==cho)return;
+		dj[x]=cho;
+		++ret;
+		sou(fail[x]);
+	}
 	LL calcit(pii *a,int n){
 		rep(i,1,tot)np[i]=p[i]=0;tot=0;
 		rep(i,1,n)head[a[i].fi]=0,malen[a[i].fi]=a[i].se;
+
+		++cho;ret=0;
+		rep(i,1,n)sou(a[i].fi);
+		cerr<<ret<<endl;
+
 		t=0;
 		stk[t=1]=a[1].fi;
 		assert(stk[1]==1);
@@ -233,7 +250,7 @@ LL work(int l,int r){
 	return core::calcit(po,m);
 }
 namespace simplesam{
-	int go[N<<1][26],tot,last,fail[N<<1],len[N<<1];
+	int go[N][26],tot,last,fail[N],len[N];
 	void initsam(){
 		rep(i,1,tot){
 			fail[i]=len[i]=0;
@@ -271,12 +288,16 @@ int main(){
 	n=strlen(str+1);
 	initall();
 	int Q;scanf("%d",&Q);
+	cerr<<Q<<endl;
 	while(Q--){
 		int l,r;scanf("%s%d%d",qs+1,&l,&r);
 		printf("%lld\n",simplesam::calc(qs)-work(l,r));
 	}
+	cerr<<"maxdep:"<<maxdep<<endl;
 	return 0;
 }
+
+
 
 
 
