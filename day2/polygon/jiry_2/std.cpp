@@ -384,7 +384,7 @@ int main(){
 		}
 	for (int i=2;i<=n;i++){
 		int k1=(i-2)/3+1; 
-		//scanf("%d",&k1); 
+		scanf("%d",&k1); 
 		go[k1].push_back(i);
 	}
 	for (int i=1;i<=len;i++) x[i].gettotd();
