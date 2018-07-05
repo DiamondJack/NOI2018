@@ -1,9 +1,7 @@
 res = [["编号","$n$","$K$","特殊性质","","编号","$n$","$K$","特殊性质"]]
 ret=[]
-for i in range(2):
-	ret.append([str(i + 1), "$\leq " + str(20) + "$", "$\leq 3$", "无"])
-for i in range(2):
-	ret.append([str(i + 1), "$\leq " + str(30) + "$", "$\leq 3$", "无"])
+for i in range(4):
+	ret.append([str(i + 1), "$\leq " + str(i * 5 + 5) + "$", "$\leq 3$", "无"])
 for i in range(6):
 	ans=[str(5 + i), "$\leq 1000$", "$=1$"]
 	if i >= 3:
