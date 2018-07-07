@@ -86,6 +86,6 @@ C 国和 D 国近年来战火纷飞。
 
 - 特殊性质 $S_2$：对于任意 $i$，保证 $x_i$ 到 $y_i$ 的最短路径所经过的编号最小的节点为节点 $1$。
 
-对于所有的数据，$n\le {{ tl.hn(prob.args['maxn'])  }}, m\le {{ tl.hn(prob.args['maxm'])  }}, c_i\le 10^9, v_i\le 10^{10}\times n$。每个测试点中，所有 $n$ 的和不会超过 ${{ tl.hn(20 * prob.args['maxn'] + 233)  }}$，所有 $m$ 的和不会超过 ${{ tl.hn(20 * prob.args['maxm'] + 233)  }}$。
+对于所有的数据，$1\le n\le {{ tl.hn(prob.args['maxn'])  }}, 0\le m\le {{ tl.hn(prob.args['maxm'])  }}, 0\le c_i\le 10^9, 0\le v_i\le 10^{10}\times n$。每个测试点中，所有 $n$ 的和不会超过 ${{ tl.hn(20 * prob.args['maxn'] + 233)  }}$，所有 $m$ 的和不会超过 ${{ tl.hn(20 * prob.args['maxm'] + 233)  }}$。
 
 \color{white}放马过来吧。我已做好万全准备。\color{black}
