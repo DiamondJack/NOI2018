@@ -35,5 +35,10 @@ users:
       expected: {==: 20}
     randiter:
       path: immortalCO/randiter.cpp
-      expected: {<=: 60}
+      expected: {<=: 40}
+    yjqgreedy:
+      path: immortalCO/yjqgreedy.cpp
+      expected:
+        ">=": 15
+        "<=": 40
 version: 2
