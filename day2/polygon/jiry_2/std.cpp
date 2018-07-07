@@ -175,7 +175,7 @@ void trylink(int now,int mid,int n,int *A,int *d,int u,int v){
 		return;
 	}
 	if (d[now]==2||n-now+1<=K||now<=K) trylink(now+1,mid,n,A,d,u,v);
-	int l=max(1,now-K+1);
+	int l=max(1,now-K);
 	if (d[now]==1||(d[now]==0&&(n-now+1<=K||now<=K))){
 		for (int i=l;i<=mid;i++){
 			if (link(A,d,i,now,n)) trylink(now+1,mid,n,A,d,u,v);
@@ -192,9 +192,6 @@ void trylink(int now,int mid,int n,int *A,int *d,int u,int v){
 }
 void getgo(int k1,int k2){
 	sign++;
-	//cout<<"go "<<k1<<" "<<k2<<endl;
-	//puts("a"); x[k1].print();
-	//puts("b"); x[k2].print();
 	if (x[k2].d[0]==0) return;
 	int n=x[k1].m+x[k2].m,ma=0;
 	static int A[NL*2],d[NL*2];
@@ -224,6 +221,51 @@ void dfs1(int k1){
 inline void update(int &k1,long long k2){
 	k1=(k1+k2)%mo;
 }
+int getansway(int now,int mid,int n,int* A,int *d){
+	int preA[NL*2],pred[NL*2];
+	for (int i=0;i<=n;i++) preA[i]=A[i],pred[i]=d[i];
+	if (now>n){
+		return 0;
+	}
+	for (int i=1;i<=n;i++){
+		int num=2-d[i];
+		for (int j=1;j<=n&&num;j++)
+			if (abs(i-j)<=K||n-abs(i-j)<=K&&d[j]<2){
+				if (i<=mid&&j<=mid&&abs(i-j)<=K) continue;
+				if (i>mid&&j>mid&&abs(i-j)<=K) continue;
+				num--;
+			}
+		if (num) return 0;
+	}
+	int b[10],len=0,ans=0,tot=0;
+	for (int i=1;i<=n;i++)
+		if ((abs(now-i)<=K||n-abs(now-i)<=K)&&d[i]<2){
+			if (now<=mid&&i<=mid&&abs(now-i)<=K) continue;
+			if (now>mid&&i>mid&&abs(now-i)<=K) continue;
+			if (i<now) b[++len]=i; else tot++;
+		}
+	if (d[now]+tot>=2) ans+=getansway(now+1,mid,n,A,d);
+	if (d[now]+tot+1>=2&&d[now]<=1){
+		for (int i=1;i<=len;i++){
+			int tag=link2(A,d,b[i],now,n);
+			if (tag==2) ans++;
+			else if (tag==1) ans+=getansway(now+1,mid,n,A,d);
+			for (int k=0;k<=n;k++) A[k]=preA[k],d[k]=pred[k]; 
+		}
+	}
+	if (d[now]==0){
+		for (int i=1;i<=len;i++)
+			for (int j=i+1;j<=len;j++){
+				if (link2(A,d,b[i],now,n)){
+					int tag=link2(A,d,b[j],now,n);
+					if (tag==2) ans++;
+					else if (tag) ans+=getansway(now+1,mid,n,A,d);
+				}
+				for (int k=0;k<=n;k++) A[k]=preA[k],d[k]=pred[k]; 
+			}
+	}
+	return ans;
+}
 int mergeleaf(int k1){
 	//cout<<k1<<endl;
 	static int A[NL];
@@ -234,67 +276,20 @@ int mergeleaf(int k1){
 	for (int i=0;i<=x[k1].m;++i)
 		if (x[k1].d[i]!=2) ma=max(ma,x[k1].A[i]);
 	vector<int>b;
-	for (int i=1;i<=x[k1].m;++i)
-		if (i<=K||x[k1].m-i+1<=K) b.push_back(i);
 	if (x[k1].d[0]==0) return 0;
-	int n=x[k1].m,ans=0;
+	int n=x[k1].m;
+	memcpy(A,x[k1].A,sizeof A);
+	memcpy(d,x[k1].d,sizeof d);
+	A[n+1]=ma+1; d[n+1]=0;
 	if (x[k1].d[0]==1){
-		for (int a=0;a<b.size();a++){
-			memcpy(A,x[k1].A,sizeof A);
-			memcpy(d,x[k1].d,sizeof d);
-			A[n+1]=ma+1; d[n+1]=0;
-			if (link(A,d,0,n+1,n+1)==0||link2(A,d,b[a],n+1,n+1)==0) continue;
-			if (checkfinal(A,d,n+1)) ans++;
-		}
-	} else {
-		for (int a=0;a<b.size();a++)
-			for (int c=a+1;c<b.size();c++){
-				memcpy(A,x[k1].A,sizeof A);
-				memcpy(d,x[k1].d,sizeof d);
-				A[n+1]=ma+1; d[n+1]=0;
-				if (link(A,d,b[a],n+1,n+1)==0||link2(A,d,b[c],n+1,n+1)==0) continue;
-				if (checkfinal(A,d,n+1)) ans++; 
-			}
+		if (link(A,d,0,n+1,n+1)==0) return 0;
 	}
+	int ans=getansway(1,x[k1].m,n+1,A,d);
 	return ans;
-}
-int getansway(int now,int mid,int n,int* A,int *d){
-	int preA[NL*2],pred[NL*2];
-	for (int i=0;i<=n;i++) preA[i]=A[i],pred[i]=d[i];
-	if (now>n||now>mid+K){
-		return 0;
-	}
-	if (d[now]==2) return getansway(now+1,mid,n,A,d);
-	int b[10],len=0;
-	for (int i=1;i<=mid;i++)
-		if ((now-i<=K||n-now+i<=K)&&d[i]<2) b[++len]=i;
-	if (d[now]==1){
-		int ans=0;
-		for (int i=1;i<=len;i++){
-			int tag=link2(A,d,b[i],now,n);
-			if (tag==2) ans++;
-			else if (tag==1) ans+=getansway(now+1,mid,n,A,d);
-			for (int k=0;k<=n;k++) A[k]=preA[k],d[k]=pred[k]; 
-		}
-		return ans;
-	}
-	if (d[now]==0){
-		int ans=0;
-		for (int i=1;i<=len;i++)
-			for (int j=i+1;j<=len;j++){
-				if (link2(A,d,b[i],now,n)){
-					int tag=link2(A,d,b[j],now,n);
-					if (tag==2) ans++;
-					else if (tag) ans+=getansway(now+1,mid,n,A,d);
-				}
-				for (int k=0;k<=n;k++) A[k]=preA[k],d[k]=pred[k]; 
-			}
-		return ans;
-	}
 }
 int mergestate(int k1,int k2){
 	sign++;
-	if (x[k2].d[0]==0||x[k1].d[0]!=x[k2].d[0]||x[k1].totd!=x[k2].totd) return 0;
+	if (x[k2].d[0]==0||x[k1].d[0]!=x[k2].d[0]||(x[k1].totd!=x[k2].totd&&x[k2].m>=K&&x[k1].m>=K)) return 0;
 	int n=x[k1].m+x[k2].m,ma=0;
 	static int A[NL*2],d[NL*2];
 	for (int i=0;i<=x[k1].m;++i){
@@ -311,7 +306,7 @@ int mergestate(int k1,int k2){
 	}
 	if (d[0]!=2) return 0;
 	assert(d[n+1]==2);
-	int ans=getansway(x[k1].m+1,x[k1].m,n,A,d);
+	int ans=getansway(1,x[k1].m,n,A,d);
 	return ans;
 }
 void getansleaf(){
@@ -382,11 +377,11 @@ int main(){
 		for (int i=pre+1;i<=now;i++) getaddf(i);
 		if (len==now) break;
 	}
-	//cout<<len<<" "<<n<<endl; int tot=0;
+	int tot=0;
 	for (int i=1;i<=len;i++)
-		for (int j=1;j<=len;j++)
-			if (gof[i][j].size()) allP.push_back(mp(i,j));
-	//cout<<allP.size()<<" "<<tot<<endl;
+		for (int j=1;j<=len;j++){
+			if (gof[i][j].size()) allP.push_back(mp(i,j)),tot+=gof[i][j].size();
+		}
 	for (int i=2;i<=n;i++){
 		int k1=(i-2)/3+1; 
 		scanf("%d",&k1); 
@@ -395,11 +390,4 @@ int main(){
 	for (int i=1;i<=len;i++) x[i].gettotd();
 	dfs1(1);
 	treedp(1);
-	/*for (int i=1;i<=n;i++){
-		for (int j=1;j<=len;j++)
-			if (f[i][j]){
-				printf("state %d %d %d\n",i,j,f[i][j]);
-				x[j].print();
-			}
-	}*/
 }

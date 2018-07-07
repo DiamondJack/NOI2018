@@ -9,12 +9,15 @@ partial score: false
 pre: []
 samples: 
   - cases: [1, 2]
-time limit: 4.0
+time limit: 5.0
 title: {zh-cn: 多边形}
 type: program
 users:
-  immortalCO:
+  jiry_2:
     std:
       path: jiry_2/std.cpp
       expected: {==: 100}
+    search:
+      oath: jiry_2/search.cpp
+      expected: {==: 10}
 version: 2
