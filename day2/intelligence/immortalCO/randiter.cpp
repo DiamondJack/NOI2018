@@ -121,3 +121,4 @@ namespace banban {
 int main() {
 	banban::__main__();
 }
+
