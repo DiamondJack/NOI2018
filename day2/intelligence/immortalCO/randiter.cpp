@@ -82,6 +82,7 @@ namespace banban {
 			for(int i = 1; i <= M; ++i) {
 				int x, y; ll v; 
 				cin >> x >> y >> v;
+				if(x == y) v = 1e17;
 				q[i] = {{x, y}, v};
 				qlca[i] = lca(x, y);
 				srand(rand() + x + y + v);
