@@ -378,7 +378,6 @@ int main(){
 		for (int i=pre+1;i<=now;i++) getaddf(i);
 		if (len==now) break;
 	}
-	printf("_%d %d\n",len,gtw);
 	int tot=0;
 	for (int i=1;i<=len;i++)
 		for (int j=1;j<=len;j++){
