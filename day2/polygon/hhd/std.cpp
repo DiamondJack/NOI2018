@@ -378,15 +378,14 @@ int main(){
 		for (int i=pre+1;i<=now;i++) getaddf(i);
 		if (len==now) break;
 	}
-	printf("_%d %d\n",len,gtw);
+	//printf("_%d %d\n",len,gtw);
 	int tot=0;
 	for (int i=1;i<=len;i++)
 		for (int j=1;j<=len;j++){
 			if (gof[i][j].size()) allP.push_back(mp(i,j)),tot+=gof[i][j].size();
 		}
 	for (int i=2;i<=n;i++){
-		int k1=(i-2)/3+1; 
-		scanf("%d",&k1); 
+		int k1=(i-2)/3+1;//scanf("%d",&k1);
 		go[k1].push_back(i);
 	}
 	for (int i=1;i<=len;i++) x[i].gettotd();
