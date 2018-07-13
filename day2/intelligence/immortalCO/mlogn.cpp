@@ -2,6 +2,20 @@
 
 namespace __main__ {
 
+	namespace io {
+		const int Buff = 1 << 15;
+		char B[Buff], *S = B, *T = B;
+	}
+	template<class Type> inline Type read() {
+		using namespace io;
+		#define getc() ((S == T) && (T = (S = B) + fread(B, 1, Buff, stdin), S == T) ? 0 : *S++)
+		char ch; Type ans = 0; bool neg = 0;
+		while(ch = getc(), (ch < '0' || ch > '9') && ch != '-')	;
+		ch == '-' ? neg = 1 : ans = ch - '0';
+		while(ch = getc(), '0' <= ch && ch <= '9') ans = ans * 10 + ch - '0';
+		return neg ? -ans : ans;
+	}
+
 	using ll = long long;
 	const ll inf = 1000000000000000000ll;
 	const ll mov = 10000000000000000ll;
@@ -147,11 +161,11 @@ namespace __main__ {
 	}
 
 	void __main__() {
-		int C; std::cin >> C; 
+		int C = read<int>();
 		null = mem;
 		*null = {null, null, -inf, -inf};
 		while(C--) {
-			std::cin >> N;
+			N = read<int>();
 			ans = -3 * inf;
 			tot = mem;
 			for(int i = 1; i <= N; ++i) {
@@ -159,16 +173,14 @@ namespace __main__ {
 				reinit(adj[i]);
 			}
 			for(int i = 1; i < N; ++i) {
-				int a, b, v;
-				std::cin >> a >> b >> v;
+				int a = read<int>(), b = read<int>(), v = read<int>();
 				adj[a].push_back({b, v});
 				adj[b].push_back({a, v});
 			}
 			Tree::__init__();
-			int M; std::cin >> M;
+			int M = read<int>();
 			for(int i = 1; i <= M; ++i) {
-				int x, y, z; ll v, w;
-				std::cin >> x >> y >> v; 
+				int x = read<int>(), y = read<int>(), z; ll v = read<ll>(), w; 
 				v = mov - v;
 				w = v;
 				z = lca(x, y);

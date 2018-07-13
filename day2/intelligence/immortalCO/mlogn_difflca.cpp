@@ -137,11 +137,11 @@ namespace __main__ {
 			arg_mov = dis[i];
 			merge(P[i], P[k.to], 1, N, -inf, -inf);
 
-			if(Q[k.to].size() > Q[i].size()) Q[i].swap(Q[k.to]);
-			arg_mov = dis[i] << 1;
-			for(auto c : Q[k.to]) Q[i][c.first] += c.second;
-			reinit(Q[k.to]);
-			Q[i].erase(i);
+			//if(Q[k.to].size() > Q[i].size()) Q[i].swap(Q[k.to]);
+			//arg_mov = dis[i] << 1;
+			//for(auto c : Q[k.to]) Q[i][c.first] += c.second;
+			//reinit(Q[k.to]);
+			//Q[i].erase(i);
 		}
 ///*bgg*/printf("dfs_sol ret i = %d\n", i);
 	}
@@ -182,12 +182,12 @@ namespace __main__ {
 				if(x != z) {arg_mov = dis[x]; merge(P[x], build(1, N), 1, N, -inf, -inf);}
 				if(y != z) {arg_mov = dis[y]; merge(P[y], build(1, N), 1, N, -inf, -inf);}
 
-				v += w + dis[x] + dis[y];
+				//v += w + dis[x] + dis[y];
 ///*bgg*/printf("step2 v = %lld\n",v);
-				int Px = i << 1, Py = i << 1 | 1;
-				pinf[Px] = {v, x}; pinf[Py] = {v, y};
-				if(x != z) {arg_mov = dis[x] << 1; Q[x][z] += Data(Py, Py, 0);}
-				if(y != z) {arg_mov = dis[y] << 1; Q[y][z] += Data(Px, Px, 0);}
+				//int Px = i << 1, Py = i << 1 | 1;
+				//pinf[Px] = {v, x}; pinf[Py] = {v, y};
+				//if(x != z) {arg_mov = dis[x] << 1; Q[x][z] += Data(Py, Py, 0);}
+				//if(y != z) {arg_mov = dis[y] << 1; Q[y][z] += Data(Px, Px, 0);}
 ///*bgg*/puts("");
 			}
 			dfs_sol(1, 0);
