@@ -61,3 +61,9 @@ int main(){
 	assert(ans%2==0);
 	printf("%d\n",ans/2);
 }
+
+
+
+
+
+

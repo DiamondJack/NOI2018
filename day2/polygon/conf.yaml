@@ -1,14 +1,14 @@
 args: {maxn: 50000, maxm: 100000}
 compile: {c: -O2 -lm, cpp: -O2 -lm, java: '', pas: -O2, py: ''}
 data:
-  - cases: [1]
+  - cases: [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20]
 folder: problem
 memory limit: 512 MB
 name: polygon
 partial score: false
 pre: []
 samples: 
-  - cases: [1, 2]
+  - cases: [1, 2, 3, 4]
 time limit: 5.0
 title: {zh-cn: 多边形}
 type: program
