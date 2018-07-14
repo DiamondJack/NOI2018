@@ -11,15 +11,76 @@ def getintline(in_f,cnt):
 		obj[i] = int(obj[i])
 	return obj
 
+c1 = []
+c2 = []
+fa = []
+
+def findfa(x):
+	global fa
+	d = [x]
+	while fa[d[-1]] != d[-1]:
+		d.append(fa[d[-1]])
+	for i in d:
+		fa[i] = d[-1]
+	return d[-1]
+		
+def check_g(n):
+	global c1,c2,fa
+	fa = [i for i in range(n+1)]
+	for i in range(len(c1)):
+		assert(findfa(c1[i])!=findfa(c2[i]))
+		fa[fa[c1[i]]] = fa[c2[i]]
+
 def check_in_file(in_f,out_f):
+	global c1,c2
 	T = getintline(in_f,1)
 	assert(1<=T and T<=3)
 	MAXN = 0
 	MAXM = 0
-	for tt in range(T)
+	Qnum = -1
+	MAXG = 2#2=line 1=tree 0=no -1=fail
+	ATSAME = True
+	Knum = -1
+	for tt in range(T):
+		c1 = []
+		c2 = []
 		[n,m] = getintline(in_f,2)
-		assert(1<=n and n<=)
-		assert(1<=n and n<=)
+		if m != n - 1:
+			MAXG = min(MAXG,0)
+		assert(1<=n and n<=200000)
+		assert(1<=m and m<=400000)
+		MAXN = max(n,MAXN)
+		MAXM = max(m,MAXM)
+		for i in range(m):
+			[u,v,l,a] = getintline(in_f,4)
+			assert(1<=u and u<=n)
+			assert(1<=v and v<=n)
+			assert(1<=l and l<=10000)
+			assert(1<=a and a<=1000000000)
+			if u + 1 != v:
+				MAXG = min(1,MAXG)
+			if a != 1:
+				ATSAME = False
+			c1.append(u)
+			c2.append(v)
+		check_g(n)
+		[Q,K,S] = getintline(in_f,3)
+		assert(0<=Q and Q<=300000)
+		assert(K == 0 or K == 1)
+		assert(1<=S and S<=1000000000)
+		if Qnum == -1:
+			Qnum = Q
+		else:
+			assert(Qnum == Q)
+		if Knum == -1:
+			Knum = K
+		else:
+			assert(Knum == K)
+		for i in range(Q):
+			[v0,p0] = getintline(in_f,2)
+			assert(1<=v0<=n)
+			assert(0<=p0<=S)
+			
 		
 
 for i in range(1,21):
