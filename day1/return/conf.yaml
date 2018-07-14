@@ -15,13 +15,16 @@ title: {zh-cn: 归程}
 type: program
 users:
   wyz:
+    debug.cpp:
+      expected: []
+      path: wyz/debug.cpp
     dijkstra.cpp:
       expected: []
       path: wyz/dijkstra.cpp
-    spfa.cpp:
-      expected: []
-      path: wyz/spfa.cpp
     force.cpp:
       expected: []
       path: wyz/force.cpp
+    spfa.cpp:
+      expected: []
+      path: wyz/spfa.cpp
 version: 2

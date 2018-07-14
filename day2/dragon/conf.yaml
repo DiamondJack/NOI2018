@@ -12,5 +12,16 @@ samples:
 time limit: 1.0
 title: {zh-cn: 屠龙勇士}
 type: program
-users: {}
+users:
+  hyp:
+    std-hyp.cpp: {expected: == 100, path: hyp/std-hyp.cpp}
+  ljk:
+    force.cpp:
+      expected: []
+      path: ljk/force.cpp
+    std-ljk.cpp: {expected: == 100, path: ljk/std-ljk.cpp}
+  ufozgg:
+    force.cpp:
+      expected: []
+      path: ufozgg/force.cpp
 version: 2
