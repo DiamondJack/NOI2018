@@ -1,6 +1,7 @@
 // #define FAST_READ
 #define DIJKSTRA
 #define KRUSKAL
+#define MULTIPLICATE
 #define NOINFO
 #include "../core.hpp"
 
