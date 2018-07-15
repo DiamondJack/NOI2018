@@ -20,6 +20,7 @@ def findfa(x):
 	d = [x]
 	while fa[d[-1]] != d[-1]:
 		d.append(fa[d[-1]])
+		#print(fa[d[-1]],d[-1])
 	for i in d:
 		fa[i] = d[-1]
 	return d[-1]
@@ -28,12 +29,14 @@ def check_g(n):
 	global c1,c2,fa
 	fa = [i for i in range(n+1)]
 	for i in range(len(c1)):
-		assert(findfa(c1[i])!=findfa(c2[i]))
-		fa[fa[c1[i]]] = fa[c2[i]]
+		#assert(findfa(c1[i])!=findfa(c2[i]))
+		fa[findfa(c1[i])] = fa[findfa(c2[i])]
+	for i in range(1,n+1):
+		assert(findfa(i)==findfa(1))
 
 def check_in_file(in_f,out_f):
 	global c1,c2
-	T = getintline(in_f,1)
+	[T] = getintline(in_f,1)
 	assert(1<=T and T<=3)
 	MAXN = 0
 	MAXM = 0
@@ -48,7 +51,8 @@ def check_in_file(in_f,out_f):
 		if m != n - 1:
 			MAXG = min(MAXG,0)
 		assert(1<=n and n<=200000)
-		assert(1<=m and m<=400000)
+		#assert(1<=m)
+		assert(m<=400000)
 		MAXN = max(n,MAXN)
 		MAXM = max(m,MAXM)
 		for i in range(m):
@@ -80,7 +84,7 @@ def check_in_file(in_f,out_f):
 			[v0,p0] = getintline(in_f,2)
 			assert(1<=v0<=n)
 			assert(0<=p0<=S)
-			
+	print("%d\t%d\t%d\t%d\t%d\t%d"%(MAXN,MAXM,Qnum,MAXG,ATSAME,Knum))
 		
 
 for i in range(1,21):
@@ -91,7 +95,7 @@ for i in range(1,21):
 		check_in_file(in_f,out_f)
 	in_f.close()
 	out_f.close()
-for i in range(1,5):
+for i in range(1,6):
 	print('Check sample %d'%i)
 	in_f=open('../down/%d.in'%i,'r')
 	out_f=open('../down/%d.ans'%i,'r')
