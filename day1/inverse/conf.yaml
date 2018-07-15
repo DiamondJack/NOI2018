@@ -1,7 +1,10 @@
 args: {n: 600000}
 compile: {c: -O2 -lm, cpp: -O2 -lm, java: '', pas: -O2, py: ''}
 data:
-- cases: [1, 2]
+- cases: [inverse1, inverse2, inverse3, inverse4, inverse5, inverse6, inverse7, inverse8,
+    inverse9, inverse10, inverse11, inverse12, inverse13, inverse14, inverse15, inverse16,
+    inverse17, inverse18, inverse19, inverse20, inverse21, inverse22, inverse23, inverse24,
+    inverse25]
 folder: problem
 memory limit: 512 MB
 name: inverse
@@ -10,10 +13,16 @@ pre:
 - cases: [1]
 samples:
 - cases: [1, 2]
-time limit: 1
+- cases: [3]
+time limit: 1.0
 title: {zh-cn: 冒泡排序}
 type: program
 users:
   std:
+    bf.cpp: {expected: == 100, path: std/bf.cpp}
+    gen2.cpp: {expected: == 100, path: std/gen2.cpp}
     shanquan2.cpp: {expected: == 100, path: std/shanquan2.cpp}
+    syc.cpp: {expected: == 100, path: std/syc.cpp}
+    test1.cpp: {expected: == 100, path: std/test1.cpp}
+    test2.cpp: {expected: == 100, path: std/test2.cpp}
 version: 2
