@@ -165,7 +165,7 @@ def genRDStr(pr,lenS,lenT,ob):
 
 def genStrong(pr,lenS,lenT,ob):
 	lenC=0
-	while (lenC+2)*(lenC+3)<=2*lenS-100:
+	while (lenC+2)*(lenC+3)<=2*lenS-10000:
 		lenC+=1
 	cir=randStr(lenC,s=25)
 
@@ -185,8 +185,11 @@ def genStrong(pr,lenS,lenT,ob):
 
 	print(len(S),lenS)
 
-	for i in range(lenS-len(S)):
+	for i in range((lenS-len(S))-(lenS-len(S))//10):
 		S.append(randchar())
+
+	for i in range(lenS-len(S)):
+		S.append('a')
 
 	assert len(S)==lenS
 
@@ -194,7 +197,7 @@ def genStrong(pr,lenS,lenT,ob):
 	Q=[]
 	rest=lenT
 	for i in range(lenT//100):
-		Q.append(random.randint(5,10))
+		Q.append(random.randint(10,15))
 		rest-=Q[-1]
 
 	print(rest//(lenC+20),lenC)
@@ -212,6 +215,9 @@ def genStrong(pr,lenS,lenT,ob):
 		if ob:
 			l=random.randint(1,lenS)
 			r=random.randint(l,lenS)
+			if random.randint(1,10)==1:
+				l=random.randint(lenS-1000,lenS)
+				r=random.randint(l,lenS)
 		
 		T=[]
 		if x>=lenC:
@@ -225,7 +231,8 @@ def genStrong(pr,lenS,lenT,ob):
 		else:
 			for i in range(x):
 				T.append(randchar())
-
+		for i in range(3):
+			T[random.randint(0,len(T)-1)]=randchar()
 		pr('%s %s %s\n'%(''.join(T),l,r))
 
 
