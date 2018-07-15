@@ -71,7 +71,7 @@ int bfs(int now,int lim)
 }
 int main()
 {
-	//freopen("../data/2.in","r",stdin);
+	//freopen("../data/15.in","r",stdin);
 	int i,j,v0,p0,v,p,ans;
 	int T;
 	for(scanf("%d",&T);T;--T)
