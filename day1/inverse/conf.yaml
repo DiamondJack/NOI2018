@@ -14,7 +14,7 @@ pre:
 samples:
 - cases: [1, 2]
 - cases: [3]
-time limit: 1
+time limit: 1.0
 title: {zh-cn: 冒泡排序}
 type: program
 users:
