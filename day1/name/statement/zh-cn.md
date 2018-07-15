@@ -32,6 +32,10 @@
 
 {{ self.sample_text() }}
 
+{% do vars.__setitem__('sample_id', 2) -%}
+{{ self.sample_file() }}
+
+
 ## {{ _('Subtasks') }}
 
 {{ tbl('data') }}

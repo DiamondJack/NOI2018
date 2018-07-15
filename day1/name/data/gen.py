@@ -314,7 +314,9 @@ def final_data():
 	for i in range(1,26):
 		os.system('time ./std <%s.in >%s.ans'%(i,i))
 
-final_data()
+with open('sp.in','w') as fp:
+	gen1_5(fp.write,200,200,200)
+os.system('time ./std <sp.in >sp.out')
 
 
 
