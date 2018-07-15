@@ -11,13 +11,14 @@ partial score: false
 pre: []
 samples:
 - cases: [1]
-time limit: 4.0 
+- cases: [2]
+time limit: 4.0
 title: {zh-cn: 你的名字}
 type: program
 users:
-  hhd:
+  src:
     bl.cpp:
       expected: []
-      path: hhd/bl.cpp
-    std.cpp: {expected: == 100, path: hhd/std.cpp}
+      path: src/bl.cpp
+    std.cpp: {expected: == 100, path: src/std.cpp}
 version: 2

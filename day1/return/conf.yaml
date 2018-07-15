@@ -29,6 +29,7 @@ users:
     spfa.cpp:
       expected: []
       path: wyz/spfa.cpp
+    std.cpp: {expected: == 100, path: wyz/std.cpp}
     treeforce.cpp:
       expected: []
       path: wyz/treeforce.cpp
