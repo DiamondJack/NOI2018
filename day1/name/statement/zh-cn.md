@@ -32,10 +32,11 @@
 
 {{ self.sample_text() }}
 
+{% do vars.__setitem__('sample_id', 2) -%}
+{{ self.sample_file() }}
+
+
 ## {{ _('Subtasks') }}
 
 {{ tbl('data') }}
 
-## {{ _('Hint') }}
-
-这里是一个非常温馨的提示。

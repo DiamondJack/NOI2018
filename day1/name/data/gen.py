@@ -4,6 +4,12 @@ import random
 def randchar(w=26):
 	return chr(ord('a')+random.randint(0,w-1))
 
+def getC(l,r):
+	w=[]
+	for i in range(l,r+1):
+		w.append(chr(ord('a')+i))
+	return w
+
 def gen_simple(pr,maxN,ojbk=False):
 	n=maxN-random.randint(1,maxN//10)
 	S=[randchar() for i in range(n)]
@@ -165,11 +171,11 @@ def genRDStr(pr,lenS,lenT,ob):
 
 def genStrong(pr,lenS,lenT,ob):
 	lenC=0
-	while (lenC+2)*(lenC+3)<=2*lenS-100:
+	while (lenC+2)*(lenC+3)<=2*lenS-(lenS//100):
 		lenC+=1
-	cir=randStr(lenC,s=25)
+	cir=randStr(lenC,s=13)
 
-	rest=lenS-((lenC+1)*(lenC+2)//2)
+	rest=lenS-(lenS//200)-((lenC+1)*(lenC+2)//2)
 	S=[]
 	for i in range(lenC):
 		S.append(cir[i])
@@ -177,16 +183,18 @@ def genStrong(pr,lenS,lenT,ob):
 	for i in range(1,lenC):
 		d=random.randint(0,rest//(lenC-i))
 		for j in range(d):
-			S.append(randchar())
+			S.append(randchar(13))
 		rest-=d
-		S.append('z')
+		S.append('o')
 		for j in range(i,lenC):
 			S.append(cir[j])
 
 	print(len(S),lenS)
 
+	DD=len(S)
+
 	for i in range(lenS-len(S)):
-		S.append(randchar())
+		S.append(random.choice(getC(20,25)))
 
 	assert len(S)==lenS
 
@@ -194,7 +202,7 @@ def genStrong(pr,lenS,lenT,ob):
 	Q=[]
 	rest=lenT
 	for i in range(lenT//100):
-		Q.append(random.randint(5,10))
+		Q.append(random.randint(10,15))
 		rest-=Q[-1]
 
 	print(rest//(lenC+20),lenC)
@@ -209,23 +217,32 @@ def genStrong(pr,lenS,lenT,ob):
 	for x in Q:
 		l=1
 		r=lenS
+		ty=random.randint(1,10)
 		if ob:
 			l=random.randint(1,lenS)
 			r=random.randint(l,lenS)
+			if ty==1:
+				l=random.randint(DD,lenS)
+				r=random.randint(l,lenS)
 		
 		T=[]
-		if x>=lenC:
-			rt=x-lenC
-			for i in range(rt//2):
-				T.append(randchar())
-			for i in range(lenC):
-				T.append(cir[i])
-			for i in range(rt-(rt//2)):
-				T.append(randchar())
-		else:
+		if ty==1:
 			for i in range(x):
-				T.append(randchar())
-
+				T.append(random.choice(getC(20,25)))
+		else:
+			if x>=lenC:
+				rt=x-lenC
+				for i in range(rt//2):
+					T.append(randchar())
+				for i in range(lenC):
+					T.append(cir[i])
+				for i in range(rt-(rt//2)):
+					T.append(randchar())
+			else:
+				for i in range(x):
+					T.append(randchar())
+		for i in range(3):
+			T[random.randint(0,len(T)-1)]=randchar()
 		pr('%s %s %s\n'%(''.join(T),l,r))
 
 
@@ -297,7 +314,9 @@ def final_data():
 	for i in range(1,26):
 		os.system('time ./std <%s.in >%s.ans'%(i,i))
 
-final_data()
+with open('sp.in','w') as fp:
+	gen1_5(fp.write,200,200,200)
+os.system('time ./std <sp.in >sp.out')
 
 
 

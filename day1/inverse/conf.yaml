@@ -9,8 +9,6 @@ folder: problem
 memory limit: 512 MB
 name: inverse
 partial score: false
-pre:
-- cases: [1]
 samples:
 - cases: [1, 2]
 - cases: [3]
@@ -19,10 +17,10 @@ title: {zh-cn: 冒泡排序}
 type: program
 users:
   std:
-    bf.cpp: {expected: == 100, path: std/bf.cpp}
-    gen2.cpp: {expected: == 100, path: std/gen2.cpp}
-    shanquan2.cpp: {expected: == 100, path: std/shanquan2.cpp}
+    dlh.cpp: {expected: == 100, path: std/dlh.cpp}
     syc.cpp: {expected: == 100, path: std/syc.cpp}
-    test1.cpp: {expected: == 100, path: std/test1.cpp}
-    test2.cpp: {expected: == 100, path: std/test2.cpp}
+  BruteForce:
+  	test1.cpp: {expected: <= 24, path: BruteForce/test1.cpp}
+  	test2.cpp: {expected: <= 44, path: BruteForce/test2.cpp}
+    bf.cpp: {expected: <= 12, path: BruteForce/bf.cpp}
 version: 2
