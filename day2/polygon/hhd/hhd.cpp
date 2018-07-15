@@ -18,6 +18,11 @@ struct atom{
 	int rest[10];
 	int m;
 	LL hash;
+	int getsum(){
+		int ans=0;
+		rep(i,1,m)ans+=rest[i];
+		return ans;
+	}
 	void prt(){
 		printf("num:%d\n",m);
 		rep(i,1,m)printf("%d ",col[i]);puts("");
@@ -261,6 +266,7 @@ void clr(){
 void gen(int du,int dv){
 	atom A=state[du];
 	atom B=state[dv];
+	//if(A.m==7&&B.m==7&&A.getsum()!=B.getsum())return;
 	if(A.m==1)return;
 	NX=du;NY=dv;
 	m=0;
@@ -297,14 +303,6 @@ void gen(int du,int dv){
 	}
 	rep(i,3,m)if(i-2<=DD||m-i+1<=DD){}else need[i]=1;
 	recol(col,m);
-	/*
-	if(du==4&&dv==3){
-		printf("here: %d\n",dj);
-		rep(i,1,m)printf("%d ",col[i]);puts("");
-		rep(i,1,m)printf("%d ",rest[i]);puts("");
-		for(auto x:edge)printf("(%d,%d),",x.fi,x.se);puts("");
-	}
-	*/
 	search(0,col,rest);
 	clr();
 	return;
@@ -367,6 +365,7 @@ bool checkdisR(int u,int v){
 int getans(int du,int dv){
 	atom A=state[du];
 	atom B=state[dv];
+	if(A.m==7&&B.m==7&&A.getsum()!=B.getsum())return 0;
 	m=0;
 	memset(col,0,sizeof col);
 	memset(rest,0,sizeof rest);
