@@ -20,7 +20,7 @@ users:
     dlh.cpp: {expected: == 100, path: std/dlh.cpp}
     syc.cpp: {expected: == 100, path: std/syc.cpp}
   BruteForce:
-  	test1.cpp: {expected: <= 24, path: BruteForce/test1.cpp}
-  	test2.cpp: {expected: <= 44, path: BruteForce/test2.cpp}
+    test1.cpp: {expected: <= 24, path: BruteForce/test1.cpp}
+    test2.cpp: {expected: <= 44, path: BruteForce/test2.cpp}
     bf.cpp: {expected: <= 12, path: BruteForce/bf.cpp}
 version: 2

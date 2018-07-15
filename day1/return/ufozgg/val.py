@@ -2,7 +2,10 @@ name = 'return'
 def getline(in_f,cnt):
 	line = in_f.readline()
 	obj = line.split(' ')
-	assert(len(obj)==cnt)
+	if cnt==0:
+		assert(len(obj)==1 and obj[0]=='')
+	else:
+		assert(len(obj)==cnt)
 	return obj
 
 def getintline(in_f,cnt):
@@ -69,7 +72,7 @@ def check_in_file(in_f,out_f):
 			c2.append(v)
 		check_g(n)
 		[Q,K,S] = getintline(in_f,3)
-		assert(0<=Q and Q<=300000)
+		assert(0<=Q and Q<=400000)
 		assert(K == 0 or K == 1)
 		assert(1<=S and S<=1000000000)
 		if Qnum == -1:
@@ -84,6 +87,7 @@ def check_in_file(in_f,out_f):
 			[v0,p0] = getintline(in_f,2)
 			assert(1<=v0<=n)
 			assert(0<=p0<=S)
+	getline(in_f,0)
 	print("%d\t%d\t%d\t%d\t%d\t%d"%(MAXN,MAXM,Qnum,MAXG,ATSAME,Knum))
 		
 

@@ -1,3 +1,4 @@
+#pragma GCC diagnostic error "-std=c++11"
 #include<cstdio>
 #include<cstdlib>
 #include<set>
@@ -28,6 +29,7 @@ void dij(int S)
 		auto w=_S.begin();
 		tmp=*w;
 		_S.erase(w);
+		//printf("CC:\t%d\t%d\n",tmp.diss,tmp.num); 
 		for(int i=las[tmp.num];i;i=nex[i])
 			if(diss[tmp.num]+len[i]<diss[to[i]])
 			{
@@ -45,13 +47,26 @@ void dij(int S)
 	}
 }
 int tt[200010],tim;
-int dfs(int now,int lim)
+int seq[200010],head,tail;
+int bfs(int now,int lim)
 {
+	int ret=diss[now],i;
 	tt[now]=tim;
-	int ret=diss[now],p;
-	for(int i=las[now];i;i=nex[i])
-		if(at[i]>lim&&tt[to[i]]!=tim&&(p=dfs(to[i],lim))<ret)//>=
-			ret=p;
+	head=0;
+	tail=1;
+	seq[1]=now;
+	while(head<tail)
+	{
+		++head;
+		for(i=las[seq[head]];i;i=nex[i])
+			if(at[i]>lim&&tt[to[i]]!=tim)
+			{
+				seq[++tail]=to[i];
+				tt[to[i]]=tim;
+				if(diss[to[i]]<ret)
+					ret=diss[to[i]];
+			}
+	}
 	return ret;
 }
 int main()
@@ -61,6 +76,8 @@ int main()
 	int T;
 	for(scanf("%d",&T);T;--T)
 	{
+		top=0;
+		memset(las,0,sizeof(las));
 		scanf("%d%d",&n,&m);
 		for(i=1;i<=m;++i)
 		{
@@ -82,11 +99,13 @@ int main()
 		scanf("%d%d%d",&q,&k,&s);
 		for(i=1;i<=q;++i)
 		{
+			//if(i%1000==0)
+			//	printf("%d\n",i); 
 			scanf("%d%d",&v0,&p0);
 			v=(v0+k*ans-1)%n+1;
 			p=(p0+k*ans)%(s+1);
 			++tim;
-			ans=dfs(v,p);
+			ans=bfs(v,p);
 			//printf("S%d\t%d\n",v,p);
 			printf("%d\n",ans);
 		}
