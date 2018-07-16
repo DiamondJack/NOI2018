@@ -1,0 +1,85 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<problem type="TRA_0_4" version="1.1.0" maker="ccr-plus">
+    <source code="100" file="name" dir="name">
+        <language cmd="gcc -o name name.c -lm -static" time="10" file="name.c"/>
+        <language cmd="g++ -o name name.cpp -lm -static -O2" time="10" file="name.cpp"/>
+        <language cmd="fpc name.pas" time="10" file="name.pas"/>
+    </source>
+    <task checker="fulltext" input="name.in" time="10" output="name.out">
+        <subtask score="4">
+            <point mem="1024" in="1.in" out="1.ans" time="5"/>
+        </subtask>
+        <subtask score="4">
+            <point mem="1024" in="2.in" out="2.ans" time="5"/>
+        </subtask>
+        <subtask score="4">
+            <point mem="1024" in="3.in" out="3.ans" time="5"/>
+        </subtask>
+        <subtask score="4">
+            <point mem="1024" in="4.in" out="4.ans" time="5"/>
+        </subtask>
+        <subtask score="4">
+            <point mem="1024" in="5.in" out="5.ans" time="5"/>
+        </subtask>
+        <subtask score="4">
+            <point mem="1024" in="6.in" out="6.ans" time="5"/>
+        </subtask>
+        <subtask score="4">
+            <point mem="1024" in="7.in" out="7.ans" time="5"/>
+        </subtask>
+        <subtask score="4">
+            <point mem="1024" in="8.in" out="8.ans" time="5"/>
+        </subtask>
+        <subtask score="4">
+            <point mem="1024" in="9.in" out="9.ans" time="5"/>
+        </subtask>
+        <subtask score="4">
+            <point mem="1024" in="10.in" out="10.ans" time="5"/>
+        </subtask>
+        <subtask score="4">
+            <point mem="1024" in="11.in" out="11.ans" time="5"/>
+        </subtask>
+        <subtask score="4">
+            <point mem="1024" in="12.in" out="12.ans" time="5"/>
+        </subtask>
+        <subtask score="4">
+            <point mem="1024" in="13.in" out="13.ans" time="5"/>
+        </subtask>
+        <subtask score="4">
+            <point mem="1024" in="14.in" out="14.ans" time="5"/>
+        </subtask>
+        <subtask score="4">
+            <point mem="1024" in="15.in" out="15.ans" time="5"/>
+        </subtask>
+        <subtask score="4">
+            <point mem="1024" in="16.in" out="16.ans" time="5"/>
+        </subtask>
+        <subtask score="4">
+            <point mem="1024" in="17.in" out="17.ans" time="5"/>
+        </subtask>
+        <subtask score="4">
+            <point mem="1024" in="18.in" out="18.ans" time="5"/>
+        </subtask>
+        <subtask score="4">
+            <point mem="1024" in="19.in" out="19.ans" time="5"/>
+        </subtask>
+        <subtask score="4">
+            <point mem="1024" in="20.in" out="20.ans" time="5"/>
+        </subtask>
+        <subtask score="4">
+            <point mem="1024" in="21.in" out="21.ans" time="5"/>
+        </subtask>
+        <subtask score="4">
+            <point mem="1024" in="22.in" out="22.ans" time="5"/>
+        </subtask>
+        <subtask score="4">
+            <point mem="1024" in="23.in" out="23.ans" time="5"/>
+        </subtask>
+        <subtask score="4">
+            <point mem="1024" in="24.in" out="24.ans" time="5"/>
+        </subtask>
+        <subtask score="4">
+            <point mem="1024" in="25.in" out="25.ans" time="5"/>
+        </subtask>
+    </task>
+</problem>

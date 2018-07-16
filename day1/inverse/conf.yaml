@@ -9,18 +9,24 @@ folder: problem
 memory limit: 512 MB
 name: inverse
 partial score: false
+pre: []
 samples:
-- cases: [1, 2]
-- cases: [3]
+- cases: [1, 2, 3]
 time limit: 1.0
 title: {zh-cn: 冒泡排序}
 type: program
 users:
+  BruteForce:
+    bf.cpp:
+      expected: []
+      path: BruteForce/bf.cpp
+    test1.cpp:
+      expected: []
+      path: BruteForce/test1.cpp
+    test2.cpp:
+      expected: []
+      path: BruteForce/test2.cpp
   std:
     dlh.cpp: {expected: == 100, path: std/dlh.cpp}
     syc.cpp: {expected: == 100, path: std/syc.cpp}
-  BruteForce:
-    test1.cpp: {expected: <= 24, path: BruteForce/test1.cpp}
-    test2.cpp: {expected: <= 44, path: BruteForce/test2.cpp}
-    bf.cpp: {expected: <= 12, path: BruteForce/bf.cpp}
 version: 2

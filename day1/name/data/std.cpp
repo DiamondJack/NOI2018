@@ -290,12 +290,14 @@ int main(){
 	initall();
 	int Q;scanf("%d",&Q);
 	cerr<<Q<<endl;
+	LL sum=0;
 	while(Q--){
 		int l,r;scanf("%s%d%d",qs+1,&l,&r);
+		sum+=r-l;
 		assert(1<=l&&l<=r&&r<=n);
 		printf("%lld\n",simplesam::calc(qs)-work(l,r));
 	}
-	cerr<<"maxdep:"<<maxdep<<endl;
+	cerr<<"sum:"<<sum<<endl;
 	return 0;
 }
 

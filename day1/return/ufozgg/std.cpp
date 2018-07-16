@@ -76,6 +76,7 @@ int main()
 	int T;
 	for(scanf("%d",&T);T;--T)
 	{
+		ans=0; 
 		top=0;
 		memset(las,0,sizeof(las));
 		scanf("%d%d",&n,&m);
