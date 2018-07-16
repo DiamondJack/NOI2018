@@ -8,7 +8,7 @@ for x in sorted(os.listdir()):
 		if x[-3:]=='.in':
 			print(x)
 			os.system('./%s <%s >tmp.txt'%(prog,x))
-			os.system('diff -w %s.out tmp.txt'%(x[:-3]))
+			os.system('diff -w %s.ans tmp.txt'%(x[:-3]))
 
 
 

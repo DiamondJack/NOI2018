@@ -40,3 +40,5 @@
 
 {{ tbl('data') }}
 
+对于所有数据，保证 $1\leq l \leq r \leq |S|$,$1\leq |T|\leq 5*10^5$
+
