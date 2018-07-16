@@ -55,6 +55,8 @@ namespace solver{
 char s[N],t[N];
 char gt[N];
 int main(){
+	//freopen("name.in","r",stdin);
+	//freopen("name.out","w",stdout);
 	scanf("%s",s+1);
 	int Q;scanf("%d",&Q);
 	while(Q--){

@@ -18,10 +18,10 @@
 #define pb push_back
 using namespace std;
 typedef long long LL;
-const int N=1010000;
+const int N=1000500;
 int maxdep=0;
-char str[N];
-char qs[N];
+char str[N>>1];
+char qs[N>>1];
 int n;
 int go[N][26],tot,last,fail[N],len[N];
 int ort[N];
@@ -45,8 +45,8 @@ void append(int c,int rt){
     rep(i,0,25)go[nt][i]=go[gt][i];for(;p&&go[p][c]==gt;p=fail[p])go[p][c]=nt;
 }
 int root[N];
-int cl[N*35],cr[N*35],sum[N*35],segtot;
-int id[N*2];
+int cl[N*30],cr[N*30],sum[N*30],segtot;
+int id[N];
 void segadd(int &me,int l,int r,int x,int v){
 	int d=++segtot;
 	cl[d]=cl[me];
@@ -80,8 +80,8 @@ struct lk{
 	int np,p;
 	lk(int _np=0,int _p=0):np(_np),p(_p){}
 };
-int head[N<<1];
-lk stree[N<<1];
+int head[N];
+lk stree[N];
 int stot;
 int dfn[N],ed[N],dftot;
 int dep[N];
@@ -143,7 +143,7 @@ void initall(){
 	}
 	rep(j,1,20)rep(i,1,tot)ff[j][i]=ff[j-1][ff[j-1][i]];
 }
-pii trace[N*3];
+pii trace[N<<1];
 int t;
 void walk(int l,int r){
 	t=0;
@@ -179,7 +179,7 @@ inline bool cmp2(const pii &x,const pii &y){
 	if(x.fi!=y.fi)return dfn[x.fi]<dfn[y.fi];
 	return x.se>y.se;
 }
-pii po[N<<3];
+pii po[N<<1];
 int m=0;
 int dj[N];
 int cho;
@@ -209,11 +209,10 @@ namespace core{
 		rep(i,1,tot)np[i]=p[i]=0;tot=0;
 		rep(i,1,n)head[a[i].fi]=0,malen[a[i].fi]=a[i].se;
 
-		/*
 		++cho;ret=0;
 		rep(i,1,n)sou(a[i].fi);
 		cerr<<ret<<endl;
-		*/
+		
 		t=0;
 		stk[t=1]=a[1].fi;
 		assert(stk[1]==1);
@@ -285,19 +284,19 @@ namespace simplesam{
 	}
 }
 int main(){
+	//freopen("name.in","r",stdin);
+	//freopen("name.out","w",stdout);
 	scanf("%s",str+1);
 	n=strlen(str+1);
 	initall();
 	int Q;scanf("%d",&Q);
 	cerr<<Q<<endl;
-	LL sum=0;
 	while(Q--){
 		int l,r;scanf("%s%d%d",qs+1,&l,&r);
-		sum+=r-l;
 		assert(1<=l&&l<=r&&r<=n);
 		printf("%lld\n",simplesam::calc(qs)-work(l,r));
 	}
-	cerr<<"sum:"<<sum<<endl;
+	cerr<<"maxdep:"<<maxdep<<endl;
 	return 0;
 }
 

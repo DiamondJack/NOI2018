@@ -1,7 +1,0 @@
-while
-python3 gen.py >1.in
-time ./bl <1.in >bl.out
-time ./std <1.in >std.out
-diff -w bl.out std.out
-do :; done
-
