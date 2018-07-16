@@ -106,7 +106,7 @@ Yazid 非常讨厌在雨天步行，因此他希望在完成回家这一目标�
 
 *所有测试点均保证 $T\leq 3$，所有测试点中的所有数据均满足如下限制：*
 
-* $n\leq 2\times 10^5$，$m\leq 4\times 10^5$，$Q\leq 3\times 10^5$，$K\in\left\{0,1\right\}$，$1\leq S\leq 10^9$。
+* $n\leq 2\times 10^5$，$m\leq 4\times 10^5$，$Q\leq 4\times 10^5$，$K\in\left\{0,1\right\}$，$1\leq S\leq 10^9$。
 
 * 对于所有边：$l\leq 10^4$，$a\leq 10^9$。
 
