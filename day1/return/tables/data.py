@@ -21,7 +21,7 @@ for i in range(20):
 		t3="是"
 		if (i<11):
 			t3="否"
-			if (i==4 or i==6):
+			if (i==4 or (i in range(6,9))):
 				n=1500
 				m=4000
 				q=2000
