@@ -15,7 +15,7 @@ title: {zh-cn: 归程}
 type: program
 users:
   ufozgg:
-    std.cpp: {expected: == 100, path: ufozgg/std.cpp}
+    force.cpp: {expected: == 100, path: ufozgg/force.cpp}
   wyz:
     debug.cpp:
       expected: []
