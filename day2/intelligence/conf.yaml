@@ -10,7 +10,7 @@ pre:
 - cases: [1]
 samples:
 - cases: [1, 2, 3, 4]
-time limit: 5.0
+time limit: 8.0
 title: {zh-cn: 情报中心}
 type: program
 users:
