@@ -102,7 +102,7 @@ void spfa(int _s){
 	memset(mind,127,sizeof(mind));
 	memset(exist,0,sizeof(exist));
 	qh=qt=0;
-	q[++qt]=_s;exist[_s]=1;mind[_s]=0;
+	q[(++qt)%=n]=_s;exist[_s]=1;mind[_s]=0;
 	while (qh!=qt){
 		int u=q[(++qh)%=n];
 		for (int i=g[u];i;i=e[i].next){
@@ -140,12 +140,18 @@ bool cmp(int u,int v){
 	return _a[u]>_a[v];
 }
 int bl[N];
+#ifdef TESTDEPTH
+int depth[N];
+#endif
 void kruskal(){
 	for (int i=1;i<=_m;++i) id[i]=i;
 	sort(id+1,id+_m+1,cmp);
 	for (int i=1;i<=n;++i){
 		bl[i]=i;
 		valP[i]=inf;
+		#ifdef TESTDEPTH
+		depth[i]=1;
+		#endif
 	}
 	memset(fa,0,sizeof(fa));
 	us.init(n);
@@ -159,9 +165,20 @@ void kruskal(){
 		valP[stamp]=_a[id[i]]-1;
 		bl[us._union(u,v)]=stamp;
 	}
+	#ifdef TESTDEPTH
+	depth[stamp]=1;
+	int maxDepth=1;
+	for (int i=stamp;i;--i){
+		depth[i]=depth[fa[i]]+1;
+		maxDepth=max(maxDepth,depth[i]);
+	}
+	cerr<<"Max Depth = "<<maxDepth<<endl;
+	// for (int i=1;i<=n;i+=5000) cerr<<i<<' '<<depth[i]<<endl;
+	#endif
 	assert(stamp==n*2-1);
 }
 
+#ifdef MULTIPLICATE
 int F[N][_logn+1];
 void constructF(){
 	for (int i=2*n-1;i>=0;--i)
@@ -170,16 +187,29 @@ void constructF(){
 		for (int i=2*n-1;i>0;--i)
 			F[i][k]=F[F[i][k-1]][k-1];
 }
+#endif
 
-int multiplicate(int v,int p){
+int goUp(int v,int p){
 	#ifdef DEBUG
 	printf("v=%d p=%d\n",v,p);
 	#endif
+	#ifdef MULTIPLICATE
+	// bool test=0;
+	// if (rand()%30==0) test=1;
+	// if (test) cerr<<"qwq: "<<v<<' '<<depth[v]<<' ';
 	for (int k=_logn;k>=0;--k){
 		int anc=F[v][k];
 		if (anc==0||p>valP[anc]) continue;
 		v=anc;
 	}
+	// if (test) cerr<<depth[v]<<" :qaq"<<endl;
+	#endif
+	#ifndef MULTIPLICATE
+	while (fa[v]){
+		if (p>valP[fa[v]]) break;
+		v=fa[v];
+	}
+	#endif
 	return v;
 }
 };
@@ -229,8 +259,10 @@ void precompute(){
 	Kruskal::kruskal();
 	Info::info("Kruskal finished.");
 	
+	#ifdef MULTIPLICATE
 	Kruskal::constructF();
 	Info::info("Array F constructed.");
+	#endif
 	
 	// #ifdef DEBUG
 	// for (int i=1;i<=2*n-1;++i)
@@ -241,7 +273,7 @@ void precompute(){
 
 int query(int v,int p){
 	#ifdef KRUSKAL
-	int top=Kruskal::multiplicate(v,p);
+	int top=Kruskal::goUp(v,p);
 	return mind[top];
 	#endif
 	#ifndef KRUSKAL

@@ -152,6 +152,7 @@ void getaddf(int k1){
 		}
 	}
 }
+int gtw=0;
 void trylink(int now,int mid,int n,int *A,int *d,int u,int v){
 	int preA[NL*2],pred[NL*2];
 	for (int i=0;i<=n;i++) preA[i]=A[i],pred[i]=d[i];
@@ -163,7 +164,7 @@ void trylink(int now,int mid,int n,int *A,int *d,int u,int v){
 			int where=addin(res);
 			if (bo[where]!=sign){
 				bo[where]=sign; gof[u][v].push_back(mp(where,1));
-				idx[where]=gof[u][v].size()-1;
+				idx[where]=gof[u][v].size()-1;++gtw;
 			} else {
 				assert(gof[u][v].size()>idx[where]);
 				gof[u][v][idx[where]].se+=1;

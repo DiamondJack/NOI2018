@@ -14,14 +14,23 @@ time limit: 4.0
 title: {zh-cn: 归程}
 type: program
 users:
+  ufozgg:
+    force.cpp: {expected: == 100, path: ufozgg/force.cpp}
   wyz:
+    debug.cpp:
+      expected: []
+      path: wyz/debug.cpp
     dijkstra.cpp:
       expected: []
       path: wyz/dijkstra.cpp
-    spfa.cpp:
-      expected: []
-      path: wyz/spfa.cpp
     force.cpp:
       expected: []
       path: wyz/force.cpp
+    spfa.cpp:
+      expected: []
+      path: wyz/spfa.cpp
+    std.cpp: {expected: == 100, path: wyz/std.cpp}
+    treeforce.cpp:
+      expected: []
+      path: wyz/treeforce.cpp
 version: 2

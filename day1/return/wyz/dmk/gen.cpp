@@ -82,18 +82,18 @@ void gen(int n,int m,int Q,int graphForm,int uniqueA,int online,int index,bool f
 		int sz=sqrt(n)+1;
 		int stamp=0;
 		bool triangle=index==1;
-		int s0=aIdMod;
+		int s0=aIdMod-n;
 		bool flag=1;
-		for (int i=1,top=triangle?i:sz,last=s0-top;flag;++i,top=triangle?i:sz,last=(--s0)-top+1)
+		for (int i=1,top=triangle?i:sz,last=s0+top;flag;++i,top=triangle?i:sz,last=(++s0)+top-1)
 			for (int j=1;j<=top;++j){
 				if (stamp+1>n){flag=0;break;}
 				++stamp;
 				int tmp1=rand()%max(1,aIdMod*8/14),tmp2=rand()%max(1,aIdMod*11/20);
 				// printf("%d %d %d\n",i,j,top);
 				if (i%2==0&&j==1) tmp1=last;
-				if (i%2==1&&j==sz) (triangle?tmp2:tmp1)=last;
+				if (i%2==1&&j==top) (triangle?tmp2:tmp1)=last;
 				if (!addEdge(stamp,stamp+top,rand()%maxL+1,tmp1)){flag=0;break;}
-				if (j<top) if (!addEdge(stamp,stamp+1,rand()%int(sqrt(maxL))+1,--s0)){flag=0;break;}
+				if (j<top) if (!addEdge(stamp,stamp+1,rand()%int(sqrt(maxL))+1,++s0)){flag=0;break;}
 				if (triangle) if (!addEdge(stamp,stamp+top+1,rand()%maxL+1,tmp2)){flag=0;break;}
 			}
 		n=max(mxn,stamp);
@@ -122,8 +122,8 @@ void gen(int n,int m,int Q,int graphForm,int uniqueA,int online,int index,bool f
 	
 	for (int i=1;i<=Q;++i){
 		_v0[i]=n-Rand_log(n);
-		if (percent(75)) _p0[i]=randULL()%(S+1);
-		else _p0[i]=_a[rand()%n];
+		if (percent(23)) _p0[i]=randULL()%(S+1);
+		else _p0[i]=_a[rand()%m];
 	}
 	
 	

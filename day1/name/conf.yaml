@@ -1,0 +1,29 @@
+args: {n: 1000}
+compile: {c: -O2 -lm, cpp: -O2 -lm, java: '', pas: -O2, py: ''}
+data:
+- cases: [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20, 21,
+    22, 23, 24, 25]
+folder: problem
+memory limit: 1 GB
+name: name
+partial score: false
+pre: []
+samples:
+- cases: [1]
+time limit: 4.0
+title: {zh-cn: 你的名字}
+type: program
+users:
+  src:
+    syc.cpp: {expected: == 100, path: src/syc.cpp}
+    std.cpp: {expected: == 100, path: src/std.cpp}
+    pa.cpp : {expected: <= 100, path: src/pa.cpp}
+    wa2.cpp : {expected: <= 68, path: src/wa2.cpp}
+    bl2.cpp : {expected: <= 72, path: src/bl2.cpp}
+    bl3.cpp : {expected: <= 76, path: src/bl3.cpp}
+    bl4.cpp : {expected: <= 80, path: src/bl4.cpp}
+    wa1.cpp : {expected: <= 28, path: src/wa1.cpp}
+    wa3.cpp : {expected: <= 64, path: src/wa3.cpp}
+    bl1.cpp : {expected: <= 12, path: src/bl1.cpp}
+    bl0.cpp : {expected: <= 12, path: src/bl0.cpp}
+version: 2

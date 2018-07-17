@@ -13,9 +13,17 @@ time limit: 6.0
 title: {zh-cn: 假面}
 type: program
 users:
+  ufozgg:
+    vali.py:
+      expected: []
+      path: ufozgg/vali.py
   wyz:
     60.cpp:
       expected: []
       path: wyz/60.cpp
     std.cpp: {expected: == 100, path: wyz/std.cpp}
+  yjq:
+    yjq.cpp:
+      expected: []
+      path: yjq/yjq.cpp
 version: 2

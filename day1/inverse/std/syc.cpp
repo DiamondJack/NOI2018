@@ -27,15 +27,15 @@ int C(int x,int y){
 
 int seq[N],tot,fir=1,app[N],mex=1;
 
-int main(){
+void Main(){
 	scanf("%d",&n);
-	*fac=*ifac=1;
-	REP(i,1,n*2) fac[i]=(ll)fac[i-1]*i%mo;
-	ifac[n*2]=Pow(fac[n*2],mo-2,mo);
-	PER(i,n*2-1,1) ifac[i]=(ll)ifac[i+1]*(i+1)%mo;
-//	REP(i,1,n) printf("%d ",ifac[i]);
 	REP(i,1,n) scanf("%d",perm+i);
-	int mx=0,cur=0,gg=0;
+//	REP(i,1,n) assert(1<=perm[i]&&perm[i]<=n);
+//	memset(app,0,sizeof app);
+//	REP(i,1,n) assert(!app[perm[i]]),app[perm[i]]=1;
+	int mx=0,cur=0,gg=0; lask=0; fir=mex=1; tot=0; ans=0;
+	memset(seq,0,sizeof seq);
+	memset(app,0,sizeof app);
 	REP(pre,1,n){
 		gg=pre;
 		int i=pre;
@@ -43,11 +43,11 @@ int main(){
 			while(fir<=tot&&seq[fir]<=perm[pre])++fir;
 			int cld=0;
 			if(mex>perm[i]) cld=1;
-			ans=(ans+(ll)cld*(0ll+C(2*n-mx-pre,cur-1)-C(2*n-mx-pre,cur)+mo))%mo;
+			ans=(0ll+ans+(ll)cld*(0ll+C(2*n-mx-pre,cur-1)-C(2*n-mx-pre,cur)+mo))%mo;
 		}
 		if(max(mx+1,perm[i]+1)<=n){
 			int cc=max(mx+1,perm[i]+1);
-			ans=(ans+C(2*n-cc-pre+1,n-pre+1)+mo-C(2*n-cc-pre+1,n-pre+2))%mo;
+			ans=(0ll+ans+C(2*n-cc-pre+1,n-pre+1)+mo-C(2*n-cc-pre+1,n-pre+2))%mo;
 		}
 		while(mex<=n&&app[mex])++mex;
 		if(perm[pre]<=mx){
@@ -64,7 +64,16 @@ int main(){
 		app[perm[pre]]=1;
 		if(cur<0) break;
 	}
-	cerr<<gg<<endl;
-	printf("%d\n",ans);
+//	cerr<<gg<<endl;
+	printf("%d\n",ans);	
+}
+
+int main(){
+	int n=600000;
+	*fac=*ifac=1;
+	REP(i,1,n*2) fac[i]=(ll)fac[i-1]*i%mo;
+	ifac[n*2]=Pow(fac[n*2],mo-2,mo);
+	PER(i,n*2-1,1) ifac[i]=(ll)ifac[i+1]*(i+1)%mo;
+	int t; scanf("%d",&t); while(t--) Main();
 	return 0;
 }
