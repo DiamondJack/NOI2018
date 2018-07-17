@@ -53,8 +53,8 @@ def genRDStr(pr,lenS,lenT,ob):
 	for i in range(rest//100):
 		Q.append(random.randint(5,15))
 		rest-=Q[-1]
-	for i in range(rest//250):
-		Q.append(250)
+	for i in range(rest//300):
+		Q.append(300)
 		rest-=Q[-1]
 
 	assert rest>=0
@@ -220,13 +220,13 @@ def final_data():
 		genStrong(fp.write,5*10**5,10**6,ob=True)
 
 	with open('23.in','w') as fp:
-		genStrong(fp.write,5*10**5,10**6,ob=True,limit=False)
+		genStrong(fp.write,5*10**5,10**6,ob=True)
 
 	with open('24.in','w') as fp:
-		genStrong(fp.write,5*10**5,10**6,ob=True,limit=False)
+		genStrong(fp.write,5*10**5,10**6,ob=True)
 
 	with open('25.in','w') as fp:
-		genStrong(fp.write,5*10**5,10**6,ob=True,limit=False)
+		genStrong(fp.write,5*10**5,10**6,ob=True)
 
 
 	for i in range(1,26):

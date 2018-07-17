@@ -20,6 +20,8 @@ users:
     pa.cpp : {expected: <= 100, path: src/pa.cpp}
     wa2.cpp : {expected: <= 68, path: src/wa2.cpp}
     bl2.cpp : {expected: <= 72, path: src/bl2.cpp}
+    bl3.cpp : {expected: <= 76, path: src/bl3.cpp}
+    bl4.cpp : {expected: <= 80, path: src/bl4.cpp}
     wa1.cpp : {expected: <= 28, path: src/wa1.cpp}
     wa3.cpp : {expected: <= 64, path: src/wa3.cpp}
     bl1.cpp : {expected: <= 12, path: src/bl1.cpp}
