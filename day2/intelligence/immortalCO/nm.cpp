@@ -57,10 +57,10 @@ namespace banban {
 
 	void __main__() {
 		int T;
-		std::cin >> T;
 		ios::sync_with_stdio(0);
 		cin.tie(0);
 		cout.tie(0);
+		std::cin >> T;
 		while(T--) {
 			std::cin >> N;
 			memset(cnt + 1, 0, N << 2);
