@@ -1,4 +1,5 @@
 #include<cstdio>
+#include<algorithm>
 #include<set>
 #define N 100000
 
@@ -52,6 +53,20 @@ while(T--)
 		int tmp;
 		scanf("%d",&tmp);
 		sword.insert(tmp);
+		}
+	int max=0;
+	for(int i=0;i<n;++i)
+		if(cure[i]!=1)
+			{
+			max=-1;
+			break;
+			}
+		else
+			max=std::max(max,life[i]);
+	if(~max)
+		{
+		printf("%d\n",max);
+		continue;
 		}
 	for(int i=0;i<n;++i)
 		{
