@@ -10,6 +10,7 @@ partial score: false
 pre: []
 samples:
 - cases: [1]
+- cases: [2]
 time limit: 4.0
 title: {zh-cn: 你的名字}
 type: program

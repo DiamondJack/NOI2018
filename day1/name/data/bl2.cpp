@@ -201,7 +201,7 @@ int main(){
 	while(Q--){
 		int l,r;scanf("%s%d%d",str+1,&l,&r);
 		int m=strlen(str+1);
-		if(m<=300){
+		if(m<=250){
 			printf("%d\n",S_sam::calc(l,r,str));
 		}
 		else{
