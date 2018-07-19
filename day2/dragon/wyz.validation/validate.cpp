@@ -88,9 +88,9 @@ inline bool inRange(int x,int l,int r){
 
 inline ll gcd(ll a,ll b){return b?gcd(b,a%b):a;}
 inline ll lcm(const vector<ll>& a){
-	ll ret=0;
+	ll ret=1;
 	for (auto ele:a){
-		ret=gcd(ret,ele);
+		ret=ret/gcd(ret,ele)*ele;
 	}
 	return ret;
 }
@@ -147,7 +147,8 @@ int main(int argc,char** argv){
 			else inf.readSpace();
 		}
 		
-		ensuref(lcm(p)<=maxLcm,"testcase#%d  lcm too large.",t);
+		ll _lcm=lcm(p);
+		ensuref(_lcm<=maxLcm,"testcase#%d  lcm=%lld too large.",t,_lcm);
 		
 		if (inRange(index,14,15)){
 			ensuref(n==maxN,"testcase#%d  n!=1e5",t);
