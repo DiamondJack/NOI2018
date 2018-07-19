@@ -1,103 +1,48 @@
-#pragma GCC diagnostic error "-std=c++11"
 #include<cstdio>
 #include<set>
-#define MAXN 1000100
-#define MAXM 1000100
+using namespace std;
+multiset <long long> S0;
+int T;
 int n,m;
-long long hp[MAXN],re[MAXN],dec[MAXN];
-int award[MAXN];
-std::multiset<int> swords;
-long long glb_gcd;
-bool check_sol(long long x,long long a,long long b)
+long long a[100010],p[100010],atk[200010],gek[100010];
+bool checkans(long long ax)
 {
-	long long mul=1;
-	while(a&&b)
-	{
-		if(a==b)
-			break;
-		if((!a&1)&&(!b&1))
-		{
-			a>>=1;
-			b>>=1;
-			mul<<=1;
-		}
-		if(a>b)
-			a-=b;
-		else
-			b-=a;
-	}
-	glb_gcd = mul*a;
-	return x%(mul*a);
-}
-long long get_ans(long long hp,long long re,long long K)
-{
-	//x*k - hp mod re = 0
-	//re * b + hp mod k = 0
-	hp %= re;
-	if(hp<0)
-		hp+=re;
-	if(hp==0)
-		return 0;
-	long long b;
-	b = get_ans(-hp,K,re%K);
-	return b;
-}
-bool check(long long w)
-{
-	int i;
-	for(i=1;i<=n;++i)
-		if(w*dec[i]<hp[i]||(w*dec[i]-hp[i])%re[i]!=0)
-			return 0;
-	return 1;
-}
-long long calc()
-{
-	long long i;
-	glb_gcd=1;
-	for(i=1;i<=n;++i)
-		check_sol(0,glb_gcd,re[i]);
-	for(i=1;i;++i)
-		if(check(i))
-			return i;
-	return -1;
+	for(int i=1;i<=n;++i)
+		if(ax*gek[i]<a[i]||ax*gek[i]%p[i]!=a[i]%p[i])
+			return false;
+	return true;
 }
 int main()
 {
-	int T,i,j,K;
-	long long max_ans=0,ans;
+	freopen("16.in","r",stdin);
+	int i,j;
 	for(scanf("%d",&T);T;--T)
 	{
-		max_ans = 0;
 		scanf("%d%d",&n,&m);
 		for(i=1;i<=n;++i)
-			scanf("%lld",hp+i);
+			scanf("%lld",a+i);
 		for(i=1;i<=n;++i)
-			scanf("%lld",re+i);
+			scanf("%lld",p+i);
+		for(i=1;i<=n+m;++i)
+			scanf("%lld",atk+i);
+		S0.clear();
+		for(i=n+1;i<=n+m;++i)
+			S0.insert(atk[i]);
 		for(i=1;i<=n;++i)
-			scanf("%d",award+i);
-		for(i=1;i<=m;++i)
 		{
-			scanf("%d",K);
-			swords.insert(K);
+			auto w=S0.upper_bound(a[i]);
+			if(w!=S0.begin())
+				--w;
+			gek[i]=*w;
+			S0.erase(w);
+			S0.insert(atk[i]);
 		}
-		for(i=1;i<=n;++i)
-		{
-			auto tmp = swords.upper_bound(hp[i]);
-			if(tmp == swords.end())
-				tmp = swords.begin();
-			K = *tmp;
-			swords.erase(K);
-			if(check_sol(hp[i],re[i],K))
+		for(long long ans=554659065370LL;ans;++ans)
+			if(checkans(ans))
 			{
-				puts("-1");
+				printf("%lld\n",ans);
 				break;
 			}
-			dec[i]=K;
-			swords.insert(award[i]);
-		}
-		if(i==n+1)
-			printf("%lld\n",calc());
 	}
-	return 0;
-}
- 
+	return 0; 
+} 
