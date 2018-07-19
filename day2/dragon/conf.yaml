@@ -8,7 +8,7 @@ name: dragon
 partial score: false
 pre: {}
 samples:
-- cases: [1]
+- cases: [1, 2]
 time limit: 2.0
 title: {zh-cn: 屠龙勇士}
 type: program
