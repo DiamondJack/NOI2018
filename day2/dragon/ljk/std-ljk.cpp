@@ -23,6 +23,7 @@ long long exgcd(long long a,long long b,long long&x,long long&y)
 long long product_mod(long long a,long long b,long long mod)
 {
 	if(b==0)return 0;
+	if(b==-1)return (-a)%mod;
 	long long t=product_mod(a,b>>1,mod);
 	if(b&1)
 		return (t+t+a)%mod;
@@ -99,7 +100,15 @@ while(T--)
 	if(flag)
 		{
 		if(ans<=0)ans+=mod;
-		printf("%lld\n",ans);
+		long long tmp=1;
+		for(int i=0;i<n;++i)
+			{
+			long long d=exgcd(cure[i],life[i],x,y);
+			long long dd=exgcd(tmp,d,x,y);
+			tmp*=d/dd;
+			}
+		mod/=tmp;
+		printf("%lld\n",ans%mod);
 		}
 	else
 		printf("-1\n");
