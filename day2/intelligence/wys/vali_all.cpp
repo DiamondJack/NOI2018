@@ -26,7 +26,8 @@ const int g_max_sum_m = 2000233;
 
 const int g_max_T = g_max_sum_n;  // TODO range of T
 
-const int MAXN = 50005;
+const int MAXN = g_max_n + 10;
+const int MAXM = g_max_m + 10;
 
 const int T_CHAIN = 1 << 0;
 const int T_ZERO_C = 1 << 1;
@@ -36,9 +37,9 @@ const int T_M_LEQ_N = 1 << 4;
 
 int a[MAXN], b[MAXN];
 int c[MAXN];
-int x[MAXN], y[MAXN];
-int lca[MAXN];
-long long v[MAXN];
+int x[MAXM], y[MAXM];
+int lca[MAXM];
+long long v[MAXM];
 
 int fa[MAXN][16];
 int dep[MAXN];
@@ -125,7 +126,6 @@ void check(std::string filename, int max_n, int max_m, int max_T, int type) {
 		for (int i = 1; i <= m; i++) {
 			x[i] = read_int(f, 1, n);
 			y[i] = read_int(f, 1, n);
-			// TODO x_i != y_i ???
 			v[i] = read_int(f, 0, 10000000000LL * n);
 			lca[i] = getlca(x[i], y[i]);
 			
