@@ -1,0 +1,5 @@
+make: `validate' is up to date.
+Validating testdata "../down/1.in"...Boooooooooooooom!!!!
+Validating testdata "../down/2.in"...  OK!!
+Sample#3 Nout Found.All the datas are checked!
+[ Invalid Testcase Id ]: 1,
