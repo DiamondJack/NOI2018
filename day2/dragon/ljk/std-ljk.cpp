@@ -3,6 +3,20 @@
 #include<set>
 #define N 100000
 
+long long read()
+{
+long long ret=0;
+char c=getchar();
+while(c<'0'||c>'9')c=getchar();
+while(c>='0'&&c<='9')
+	{
+	ret=(ret<<3)+(ret<<1);
+	ret+=c-'0';
+	c=getchar();
+	}
+return ret;
+}
+
 long long exgcd(long long a,long long b,long long&x,long long&y)
 {
 	if(a<b)return exgcd(b,a,y,x);
@@ -32,8 +46,8 @@ long long product_mod(long long a,long long b,long long mod)
 
 long long life[N];
 long long cure[N];
-int drop[N];
-int attack[N];
+long long drop[N];
+long long attack[N];
 
 int T,n,m;
 std::multiset<long long>sword;
@@ -46,13 +60,12 @@ while(T--)
 	{
 	scanf("%d%d",&n,&m);
 	sword.clear();
-	for(int i=0;i<n;++i)scanf("%lld",life+i);
-	for(int i=0;i<n;++i)scanf("%lld",cure+i);
-	for(int i=0;i<n;++i)scanf("%d",drop+i);
+	for(int i=0;i<n;++i)life[i]=read();
+	for(int i=0;i<n;++i)cure[i]=read();
+	for(int i=0;i<n;++i)drop[i]=read();
 	for(int i=0;i<m;++i)
 		{
-		int tmp;
-		scanf("%d",&tmp);
+		long long tmp=read();
 		sword.insert(tmp);
 		}
 	for(int i=0;i<n;++i)
