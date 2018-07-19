@@ -22,11 +22,4 @@ users:
     std-ljk.cpp: {expected: == 100, path: ljk/std-ljk.cpp}
     std-ljk3.cpp: {expected: == 100, path: ljk/std-ljk3.cpp}
     std_ljk2.cpp: {expected: == 100, path: ljk/std_ljk2.cpp}
-  ufozgg:
-    force.cpp:
-      expected: []
-      path: ufozgg/force.cpp
-    vali.py:
-      expected: []
-      path: ufozgg/vali.py
 version: 2
