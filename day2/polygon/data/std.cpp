@@ -1,4 +1,15 @@
-#include<bits/stdc++.h>
+#include<stdio.h>
+#include<cstring>
+#include<cstdlib>
+#include<algorithm>
+#include<vector>
+#include<map>
+#include<set>
+#include<cmath>
+#include<iostream>
+#include<assert.h>
+#include<queue>
+#include<string>
 #define rep(i,j,k) for(int i=(int)j;i<=(int)k;i++)
 #define per(i,j,k) for(int i=(int)j;i>=(int)k;i--)
 #define pii pair<int,int>
@@ -358,6 +369,7 @@ bool checkdisL(int u,int v){
 	}
 	if(v-u<=DD)return 0;
 	if(u-1+LM-v+1+RM<=DD)return 1;
+	assert(0);
 }
 bool checkdisR(int u,int v){
 	//printf("MM__%d %d\n",LM,RM);
@@ -371,6 +383,7 @@ bool checkdisR(int u,int v){
 	}
 	if(v-u<=DD)return 0;
 	if(u-1+RM-v+1+LM<=DD)return 1;
+	assert(0);
 }
 int getans(int du,int dv){
 	atom A=state[du];
