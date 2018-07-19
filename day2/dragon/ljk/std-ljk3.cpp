@@ -83,6 +83,18 @@ while(T--)
 	bool flag=true;
 	for(int i=0;i<n;++i)
 		{
+		long long d=exgcd(cure[i],attack[i],x,y);
+		if(life[i]%d)
+			{
+			flag=false;
+			break;
+			}
+		life[i]/=d;
+		cure[i]/=d;
+		attack[i]/=d;
+		}
+	for(int i=0;i<n&&flag;++i)
+		{
 		long long d=exgcd(attack[i]*mod,cure[i],x,y);
 		if((life[i]-ans*attack[i])%d)
 			{
@@ -100,15 +112,6 @@ while(T--)
 	if(flag)
 		{
 		if(ans<=0)ans+=mod;
-		long long tmp=1;
-		for(int i=0;i<n;++i)
-			{
-			long long d=exgcd(cure[i],life[i],x,y);
-			d=exgcd(d,attack[i],x,y);
-			long long dd=exgcd(tmp,d,x,y);
-			tmp*=d/dd;
-			}
-		mod/=tmp;
 		printf("%lld\n",ans%mod);
 		}
 	else
