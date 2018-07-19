@@ -104,6 +104,7 @@ while(T--)
 		for(int i=0;i<n;++i)
 			{
 			long long d=exgcd(cure[i],life[i],x,y);
+			d=exgcd(d,attack[i],x,y);
 			long long dd=exgcd(tmp,d,x,y);
 			tmp*=d/dd;
 			}
