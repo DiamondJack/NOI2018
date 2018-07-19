@@ -30,14 +30,14 @@ long long product_mod(long long a,long long b,long long mod)
 	return (t+t)%mod;
 }
 
-int life[N];
-int cure[N];
+long long life[N];
+long long cure[N];
 int drop[N];
 int attack[N];
 
 int T,n,m;
-std::multiset<int>sword;
-typedef std::multiset<int>::iterator IT;
+std::multiset<long long>sword;
+typedef std::multiset<long long>::iterator IT;
 
 int main()
 {
@@ -46,28 +46,14 @@ while(T--)
 	{
 	scanf("%d%d",&n,&m);
 	sword.clear();
-	for(int i=0;i<n;++i)scanf("%d",life+i);
-	for(int i=0;i<n;++i)scanf("%d",cure+i);
+	for(int i=0;i<n;++i)scanf("%lld",life+i);
+	for(int i=0;i<n;++i)scanf("%lld",cure+i);
 	for(int i=0;i<n;++i)scanf("%d",drop+i);
 	for(int i=0;i<m;++i)
 		{
 		int tmp;
 		scanf("%d",&tmp);
 		sword.insert(tmp);
-		}
-	int max=0;
-	for(int i=0;i<n;++i)
-		if(cure[i]!=1)
-			{
-			max=-1;
-			break;
-			}
-		else
-			max=std::max(max,life[i]);
-	if(~max)
-		{
-		printf("%d\n",max);
-		continue;
 		}
 	for(int i=0;i<n;++i)
 		{
@@ -77,11 +63,37 @@ while(T--)
 		sword.erase(tmp);
 		sword.insert(drop[i]);
 		}
+	long long max=0;
+	for(int i=0;i<n;++i)
+		if(cure[i]!=1)
+			{
+			max=-1;
+			break;
+			}
+		else
+			max=std::max(max,(life[i]+attack[i]-1)/attack[i]);
+	if(~max)
+		{
+		printf("%lld\n",max);
+		continue;
+		}
 	long long ans=0;
 	long long mod=1;
 	long long x,y;
 	bool flag=true;
 	for(int i=0;i<n;++i)
+		{
+		long long d=exgcd(cure[i],attack[i],x,y);
+		if(life[i]%d)
+			{
+			flag=false;
+			break;
+			}
+		life[i]/=d;
+		cure[i]/=d;
+		attack[i]/=d;
+		}
+	for(int i=0;i<n&&flag;++i)
 		{
 		long long d=exgcd(attack[i]*mod,cure[i],x,y);
 		if((life[i]-ans*attack[i])%d)
@@ -100,15 +112,6 @@ while(T--)
 	if(flag)
 		{
 		if(ans<=0)ans+=mod;
-		long long tmp=1;
-		for(int i=0;i<n;++i)
-			{
-			long long d=exgcd(cure[i],life[i],x,y);
-			d=exgcd(d,attack[i],x,y);
-			long long dd=exgcd(tmp,d,x,y);
-			tmp*=d/dd;
-			}
-		mod/=tmp;
 		printf("%lld\n",ans%mod);
 		}
 	else
