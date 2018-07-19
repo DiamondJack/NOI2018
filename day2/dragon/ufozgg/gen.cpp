@@ -79,7 +79,7 @@ int main()
 	long long LCM;
 	//freopen("1_20.gen","w",stdout);
 	int cas;
-	for(int cass=21;cass<=21;++cass)
+	for(int cass=16;cass<=21;++cass)
 	{
 		if(cass!=21)
 			cas=cass;
@@ -108,19 +108,21 @@ int main()
 			{
 				long long A,B,P,ANS;
 				if(tt==3)
-					P=get_prime(1000000000000LL);
+					P=get_prime(100000000LL);
 				else if(tt==4)
-					P=get_prime(10000000000LL)*96;
+					P=get_prime(1000000LL)*96;
 				else
-					P=1000000000000LL-get_rand()%100000000000LL;
+					P=100000000LL-get_rand()%1000000LL;
 				B=0;
 				while(!B)
 				{
-					A=get_rand()%P+1;
+					A=get_rand()%min(1000000LL,P)+1;
 					ANS=get_rand()%P+1;
+					while(A*ANS%P>100000000)
+						ANS=get_rand()%P+1;
 					B=A*ANS%P;
 				}
-				fprintf(inp,"%lld\n%lld\n%lld\n%lld\n",B,P,1,A);
+				fprintf(inp,"1 1\n%lld\n%lld\n%d\n%lld\n",B,P,1,A);
 				fprintf(oup,"%lld\n",ANS);
 				printf("ANS %lld\n",ANS);
 				continue;
